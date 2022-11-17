@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { SNavbar, SLink, SNavbarLogo, SNavbarToggle } from '../styled'
-import LogoHeader from '../../../assets/img/header-image.png'
+import { SNavbar, SLink, SNavbarLogo, SNavbarToggle } from './styled'
+import LogoHeader from '../../../assets/img/header-image.jpg'
 import { Link } from '@reach/router'
 
 const NavLink = (props) => (
@@ -11,7 +11,7 @@ const NavLink = (props) => (
       return {
         style: {
           textDecoration: isCurrent ? 'underline' : 'none',
-          color: 'black'
+          color: '#473F57'
         }
       }
     }}
