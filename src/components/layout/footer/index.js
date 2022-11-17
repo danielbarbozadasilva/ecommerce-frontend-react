@@ -87,7 +87,7 @@ const Footer = () => {
           <ColCopyright>
             <FooterName>Developed by Daniel Barboza</FooterName>
             <FooterName>
-              Copyright © 2021 - Todos os direitos reservados
+              Copyright © 2022 - Todos os direitos reservados
             </FooterName>
           </ColCopyright>
         </Row>
