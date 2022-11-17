@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Redirect } from '@reach/router'
+import PortalView from './views/portal'
 import { isAuthenticated } from './config/auth'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -11,9 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const Routers = () => (
   <>
-    <Router>
-
-    </Router>
+      <PortalView path="/*" />
   </>
 )
 
