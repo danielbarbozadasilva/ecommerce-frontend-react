@@ -60,6 +60,8 @@ export const recoveryPasswordAction = (data) => {
       navigate('/change-password')
       dispatch({ type: TYPES.SIGN_LOADING, status: false })
     } catch (error) {
+      const { data } = error.response
+      toastr.error('Erro', data.message)
       dispatch({ type: TYPES.SIGN_ERROR, data: error })
     }
   }
@@ -73,6 +75,8 @@ export const changePasswordAction = (data) => {
       navigate('/signin')
       dispatch({ type: TYPES.SIGN_LOADING, status: false })
     } catch (error) {
+      const { data } = error.response
+      toastr.error('Erro', data.message)
       dispatch({ type: TYPES.SIGN_ERROR, data: error })
     }
   }
