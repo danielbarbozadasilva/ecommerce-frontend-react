@@ -30,13 +30,28 @@ export const SFormGroup = styled(Row)`
 export const SButtonSignIn = styled.button`
   text-align: center;
   font-size: 16px;
-  border: 1px solid rgb(228, 224, 224);
-  background-color: #edd29a;
+  border: 1px solid #484058;
+  background-color: #484058;
+  color: #f8f9fa;
   padding: 5px 25px;
-  color: #771700;
   &:hover {
     text-decoration: underline;
-    background-color: white;
+    background-color: #ccc;
+    transition: 0.5s ease-out;
+  }
+`
+
+export const SButtonFormRecovery = styled.button`
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #484058;
+  background-color: #484058;
+  color: #f8f9fa;
+  padding: 5px 25px;
+  margin: 20px 0px;
+  &:hover {
+    text-decoration: underline;
+    background-color: #ccc;
     transition: 0.5s ease-out;
   }
 `
@@ -52,34 +67,34 @@ export const STextForm = styled.h2`
   line-height: 1.5;
   font-weight: 500;
   padding-left: 10px;
-  border-left: 1px solid #771700;
+  border-left: 1px solid #484058;
   margin: 30px 0px 50px 0px;
 `
 
 export const STextLink = styled.a`
-  color: #771700;
+  color: #473F56;
 `
 
 export const SButton = styled.button`
   text-align: center;
   font-size: 16px;
-  border: 1px solid rgb(228, 224, 224);
-  background-color: #edd29a;
+  border: 1px solid #484058;
   padding: 5px 25px;
-  color: #771700;
+  background-color: #484058;
+  color: #f8f9fa;
   margin: 30px 0px;
   &:hover {
     text-decoration: underline;
-    background-color: white;
+    background-color: #ccc;
     transition: 0.5s ease-out;
   }
   :disabled {
     text-align: center;
     font-size: 16px;
-    border: 1px solid rgb(228, 224, 224);
+    border: 1px solid #484058;
     background-color: white;
     padding: 5px 25px;
-    color: #771700;
+    color: #473F56;
     margin: 30px 0px;
   }
 `
