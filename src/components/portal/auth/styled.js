@@ -48,7 +48,7 @@ export const SButtonFormRecovery = styled.button`
   background-color: #484058;
   color: #f8f9fa;
   padding: 5px 25px;
-  margin: 20px 0px;
+  margin: 35px 0px;
   &:hover {
     text-decoration: underline;
     background-color: #ccc;
