@@ -173,4 +173,3 @@ export function formatPhone(phone) {
   }
   return phone
 }
-

@@ -83,8 +83,7 @@ const SignUp = ({ submit }) => {
         city: form.city,
         zipCode: form.zipCode,
         state: form.uf
-      },
-      auth: true
+      }
     }
     submit(nform)
   }

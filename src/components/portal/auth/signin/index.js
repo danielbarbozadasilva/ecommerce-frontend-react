@@ -75,8 +75,8 @@ const SignIn = ({ submit }) => {
               </SButtonSignIn>
             )}
             <SColFooter>
-              Não tem Cadastro?{' '}
-              <STextLink href="/signup">Cadastre-se</STextLink>
+              Esqueceu a senha?{' '}
+              <STextLink href="/recovery-password">Redefinir senha</STextLink>
             </SColFooter>
           </SForm>
         </Col>
