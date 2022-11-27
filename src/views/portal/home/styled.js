@@ -74,12 +74,12 @@ export const SButtonTitle = styled.button`
   transform: translateX(-50%);
   text-align: center;
   color: #fff;
-  background-color: #c79c60;
+  background-color: #473F57;
   line-height: 38px;
   padding: 0 18px;
   border: none;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
 

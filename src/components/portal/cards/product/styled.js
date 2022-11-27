@@ -29,7 +29,7 @@ export const SButton = styled.button`
   transform: translateX(-50%);
   text-align: center;
   color: #fff;
-  background-color: #c79c60;
+  background-color: #473F57;
   line-height: 38px;
   text-transform: uppercase;
   padding: 0 15px;
