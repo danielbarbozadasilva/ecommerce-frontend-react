@@ -32,9 +32,6 @@ const Header = () => {
               <SLink>
                 <NavLink to="/">Home</NavLink>
               </SLink>
-              <SLink>
-                <NavLink to="/category">Categorias</NavLink>
-              </SLink>
             </Nav>
           </Navbar.Collapse>
 

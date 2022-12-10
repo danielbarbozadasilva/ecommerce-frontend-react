@@ -29,7 +29,7 @@ export const SButton = styled.button`
   transform: translateX(-50%);
   text-align: center;
   color: #fff;
-  background-color: #473F57;
+  background-color: #473f57;
   line-height: 38px;
   text-transform: uppercase;
   padding: 0 15px;
@@ -44,4 +44,12 @@ export const SButton = styled.button`
     transition: 1s;
     opacity: 0.5;
   }
+`
+
+export const SCardPrice = styled.h6`
+  text-decoration: line-through;
+`
+
+export const SCardPromotion = styled.h5`
+
 `

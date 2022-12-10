@@ -12,7 +12,7 @@ import Error500 from '../error/500/index'
 
 const Menu = [
   {
-    title: 'Home',
+    title: 'Home - PrimeTech',
     icons: '',
     route: '/',
     visibleMenu: true,
@@ -36,7 +36,7 @@ const Menu = [
     component: SignUp
   },
   {
-    title: 'recovery',
+    title: 'Recuperar senha',
     icons: '',
     route: '/recovery-password',
     visibleMenu: true,
@@ -44,7 +44,7 @@ const Menu = [
     component: RecoveryPassword
   },
   {
-    title: 'recovery',
+    title: 'Recuperar senha',
     icons: '',
     route: '/change-password',
     visibleMenu: true,
@@ -52,7 +52,7 @@ const Menu = [
     component: ChangePassword
   },
   {
-    title: 'NotAuthorized',
+    title: 'Não Autorizado',
     icons: '',
     route: '/error403',
     visibleMenu: true,
@@ -60,7 +60,7 @@ const Menu = [
     component: Error403
   },
   {
-    title: 'NotFound',
+    title: 'Página não existe',
     icons: '',
     route: '/error404',
     visibleMenu: true,
@@ -68,7 +68,7 @@ const Menu = [
     component: Error404
   },
   {
-    title: 'InternalServerError',
+    title: 'Erro',
     icons: '',
     route: '/error500',
     visibleMenu: true,
@@ -82,8 +82,8 @@ const Portal = (props) => {
     <>
       <Router>
         <Layout path="/">
-          {Menu.map(({ component: Component, route, type = '' }, i) => (
-            <Component key={i} path={route} type={type} />
+          {Menu.map(({ component: Component, route, title, type = '' }, i) => (
+            <Component key={i} path={route} type={type} title={title} />
           ))}
           <Redirect from="/*" to="/error404" noThrow />
         </Layout>

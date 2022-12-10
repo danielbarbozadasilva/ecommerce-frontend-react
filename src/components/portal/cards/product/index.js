@@ -1,9 +1,10 @@
 import { Card } from 'react-bootstrap'
-import { SCardImg, SCard, SButton } from './styled'
+import { SCardImg, SCard, SButton, SCardPromotion, SCardPrice } from './styled'
 import { navigate } from '@reach/router'
+import { formatPriceBr } from '../../../../util/helpers/format-price'
 
 const CardProduct = (props) => {
-  const { title, description, finalPrice, price, photos } = props.item
+  const { title, description, promotion, price, photos } = props.item
   return (
     <div>
       <SCard>
@@ -15,12 +16,23 @@ const CardProduct = (props) => {
           <Card.Text>
             <strong>Descrição:</strong> {description}
           </Card.Text>
-          <Card.Text>
-            <strong>Preço:</strong> {price}
-          </Card.Text>
-          <Card.Text>
-            <strong>Por:</strong> {finalPrice}
-          </Card.Text>
+
+          {promotion < price ? (
+            <>
+              <SCardPrice>
+                <strong>De:</strong> {formatPriceBr(price)}
+              </SCardPrice>
+              <SCardPromotion>
+                <strong>Por:</strong> {formatPriceBr(promotion)}
+              </SCardPromotion>
+            </>
+          ) : (
+            <>
+              <SCardPrice>
+                <strong>Preço:</strong> {formatPriceBr(price)}
+              </SCardPrice>
+            </>
+          )}
           <SButton onClick={() => navigate(`/signin`)}>Adquirir</SButton>
         </Card.Body>
       </SCard>
