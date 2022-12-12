@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const SCard = styled.div`
+  text-align: center;
   border: 1px solid #dcdcdc;
   padding: 7px 7px 45px;
   position: relative;
@@ -14,6 +15,14 @@ export const SCard = styled.div`
     transition: 1s;
     opacity: 0.5;
   }
+`
+
+export const SCardTitle = styled.div`
+  font-size: 18px;
+  width: 280px;
+  height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const SCardImg = styled.img`
@@ -47,9 +56,12 @@ export const SButton = styled.button`
 `
 
 export const SCardPrice = styled.h6`
+  padding-top: 7%;
   text-decoration: line-through;
 `
 
-export const SCardPromotion = styled.h5`
+export const SCardPromotion = styled.h5``
 
+export const SCardInstallments = styled.h6`
+  padding-top: 2%;
 `
