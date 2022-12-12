@@ -9,6 +9,7 @@ import Home from '../portal/home/index'
 import Error403 from '../error/403/index'
 import Error404 from '../error/404/index'
 import Error500 from '../error/500/index'
+import CategoryProducts from '../portal/categories/index'
 
 const Menu = [
   {
@@ -18,9 +19,24 @@ const Menu = [
     visibleMenu: true,
     enabled: true,
     component: Home
+  },{
+    title: 'Produtos - PrimeTech',
+    icons: '',
+    route: '/product/search/:search',
+    visibleMenu: true,
+    enabled: true,
+    component: Home
   },
   {
-    title: 'SignIn',
+    title: 'Categorias - PrimeTech',
+    icons: '',
+    route: '/category/:categoryid',
+    visibleMenu: true,
+    enabled: true,
+    component: CategoryProducts
+  },
+  {
+    title: 'SignIn - PrimeTech',
     icons: '',
     route: '/signin',
     visibleMenu: true,
@@ -28,7 +44,7 @@ const Menu = [
     component: SignIn
   },
   {
-    title: 'SignUp',
+    title: 'SignUp - PrimeTech',
     icons: '',
     route: '/signup',
     visibleMenu: true,
@@ -36,7 +52,7 @@ const Menu = [
     component: SignUp
   },
   {
-    title: 'Recuperar senha',
+    title: 'Recuperar senha - PrimeTech',
     icons: '',
     route: '/recovery-password',
     visibleMenu: true,
@@ -44,7 +60,7 @@ const Menu = [
     component: RecoveryPassword
   },
   {
-    title: 'Recuperar senha',
+    title: 'Recuperar senha - PrimeTech',
     icons: '',
     route: '/change-password',
     visibleMenu: true,
@@ -52,7 +68,7 @@ const Menu = [
     component: ChangePassword
   },
   {
-    title: 'Não Autorizado',
+    title: 'Não Autorizado - PrimeTech',
     icons: '',
     route: '/error403',
     visibleMenu: true,
@@ -60,7 +76,7 @@ const Menu = [
     component: Error403
   },
   {
-    title: 'Página não existe',
+    title: 'Página não existe - PrimeTech',
     icons: '',
     route: '/error404',
     visibleMenu: true,
@@ -68,7 +84,7 @@ const Menu = [
     component: Error404
   },
   {
-    title: 'Erro',
+    title: 'Erro - PrimeTech',
     icons: '',
     route: '/error500',
     visibleMenu: true,

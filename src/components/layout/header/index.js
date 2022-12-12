@@ -1,8 +1,14 @@
 import React from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
-import { SNavbar, SLink, SNavbarLogo, SNavbarToggle } from './styled'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { SNavbar, SLink, SNavbarLogo, SNavDropdown, SIcon } from './styled'
 import LogoHeader from '../../../assets/img/header-image.jpg'
 import { Link } from '@reach/router'
+import { isAuthenticated, getUser } from '../../../config/auth'
+import { BsFillCartFill } from 'react-icons/bs'
+import { logoutAction } from '../../../store/auth/auth.action'
+import { useDispatch } from 'react-redux'
+import Search from '../../search/index'
+import { useLocation } from '@reach/router'
 
 const NavLink = (props) => (
   <Link
@@ -19,32 +25,61 @@ const NavLink = (props) => (
 )
 
 const Header = () => {
+  const { name, email } = getUser()
+  const dispatch = useDispatch()
+  const location = useLocation()
+
   return (
     <>
       <SNavbar bg="light" expand="lg">
         <Link to="/" id="logoMain">
           <SNavbarLogo src={LogoHeader} alt="logo" />
         </Link>
-        <SNavbarToggle aria-controls="basic-navbar-nav" />
+
+        <Navbar.Toggle aria-controls="navbarScroll" />
         <Container>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <SLink>
-                <NavLink to="/">Home</NavLink>
-              </SLink>
+            {location.pathname === '/signin' ||
+            location.pathname === '/signup' ? (
+              ''
+            ) : (
+              <Search />
+            )}
+
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              {isAuthenticated() ? (
+                <>
+                  <SNavDropdown title={email}>
+                    <NavDropdown.Item href="/profile">Perfil</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={() => dispatch(logoutAction())}>
+                      Sair
+                    </NavDropdown.Item>
+                  </SNavDropdown>
+                  <SLink>
+                    <NavLink to="/cart">
+                      <SIcon>
+                        <BsFillCartFill />
+                      </SIcon>
+                    </NavLink>
+                  </SLink>
+                </>
+              ) : (
+                <>
+                  <SNavDropdown
+                    title="Minha conta"
+                    id="navbarScrollingDropdown"
+                  >
+                    <NavDropdown.Item href="/signin">Logar</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/signup">
+                      Criar conta
+                    </NavDropdown.Item>
+                  </SNavDropdown>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
-
-          <SNavbar.Collapse className="justify-content-end">
-            <Nav>
-              <SLink>
-                <NavLink to="/signin">Logar</NavLink>
-              </SLink>
-              <SLink>
-                <NavLink to="/signup">Cadastrar</NavLink>
-              </SLink>
-            </Nav>
-          </SNavbar.Collapse>
         </Container>
       </SNavbar>
     </>

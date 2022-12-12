@@ -9,9 +9,13 @@ import {
   ContainerCards,
   ContainerCategories,
   STextPromotion,
+  STextFormated,
   settings
 } from './styled.js'
-import { listAllProducts } from '../../../store/product/product.action'
+import {
+  listAllProducts,
+  searchProducts
+} from '../../../store/product/product.action'
 import { listAllCategories } from '../../../store/category/category.action'
 import CarouselUncontrolled from '../../../components/carousel/index'
 import Slider from 'react-slick'
@@ -24,7 +28,11 @@ function Home(props) {
   const loading = useSelector((state) => state.product.loading)
 
   useEffect(() => {
-    dispatch(listAllProducts())
+    if (props.search) {
+      dispatch(searchProducts(props.search))
+    } else {
+      dispatch(listAllProducts())
+    }
     dispatch(listAllCategories())
   }, [dispatch])
 
@@ -54,7 +62,7 @@ function Home(props) {
 
   return (
     <>
-      <Helmet title={props.title}/>
+      <Helmet title={props.title} />
       <ContainerImage>
         <CarouselUncontrolled />
       </ContainerImage>
@@ -70,7 +78,9 @@ function Home(props) {
       </STextPromotion>
       <ContainerCards>
         {!loading && product.length === 0 ? (
-          <h6>Não há produtos disponiveis</h6>
+          <STextFormated>
+            <h6>Não há produtos disponiveis</h6>
+          </STextFormated>
         ) : (
           ProductList(product)
         )}
