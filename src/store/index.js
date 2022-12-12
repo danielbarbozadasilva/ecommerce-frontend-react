@@ -5,10 +5,12 @@ import multi from 'redux-multi'
 import { reducer as toastrReducer } from 'react-redux-toastr'
 import SignReducer from './auth/auth.reducer'
 import ProductReducer from './product/product.reducer'
+import CategoryReducer from './category/category.reducer'
 
 const reducers = combineReducers({
   auth: SignReducer,
   product: ProductReducer,
+  category: CategoryReducer,
   toastr: toastrReducer
 })
 
