@@ -20,7 +20,7 @@ export const signInAction = async (data) => {
         saveAuth(result.data.data)
         http.defaults.headers.token = result.data.data.token
         dispatch({ type: TYPES.SIGN_IN, data: result.data?.data })
-        navigate('/admin')
+        navigate('/')
         toastr.success('Seja Bem-vindo(a)!', result.data.data.userDTO.name)
       }
     } catch (error) {
