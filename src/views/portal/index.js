@@ -10,6 +10,7 @@ import Error403 from '../error/403/index'
 import Error404 from '../error/404/index'
 import Error500 from '../error/500/index'
 import CategoryProducts from '../portal/categories/index'
+import ProductDetails from '../portal/product/index'
 
 const Menu = [
   {
@@ -19,7 +20,8 @@ const Menu = [
     visibleMenu: true,
     enabled: true,
     component: Home
-  },{
+  },
+  {
     title: 'Produtos - PrimeTech',
     icons: '',
     route: '/product/search/:search',
@@ -28,7 +30,15 @@ const Menu = [
     component: Home
   },
   {
-    title: 'Categorias - PrimeTech',
+    title: 'Produto - PrimeTech',
+    icons: '',
+    route: '/product/:productid',
+    visibleMenu: true,
+    enabled: true,
+    component: ProductDetails
+  },
+  {
+    title: 'Categoria - PrimeTech',
     icons: '',
     route: '/category/:categoryid',
     visibleMenu: true,
