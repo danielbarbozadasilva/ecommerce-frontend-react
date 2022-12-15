@@ -20,24 +20,30 @@ import { listAllCategories } from '../../../store/category/category.action'
 import CarouselUncontrolled from '../../../components/carousel/index'
 import Slider from 'react-slick'
 import Helmet from 'react-helmet'
+import PaginationSelector from '../../../components/paginate/selector/index'
+import PaginationComponent from '../../../components/paginate/index'
 
 function Home(props) {
   const dispatch = useDispatch()
   const product = useSelector((state) => state.product.all)
   const categories = useSelector((state) => state.category.all)
   const loading = useSelector((state) => state.product.loading)
+  const [itensPerPage, setItensPerPage] = React.useState(5)
+  const [currentPage, setCurrentPage] = React.useState(0)
+
+  useEffect(() => {
+    dispatch(listAllProducts(itensPerPage, currentPage))
+    dispatch(listAllCategories())
+  }, [itensPerPage, currentPage])
 
   useEffect(() => {
     if (props.search) {
-      dispatch(searchProducts(props.search))
-    } else {
-      dispatch(listAllProducts())
+      dispatch(searchProducts(props.search, itensPerPage, currentPage))
     }
-    dispatch(listAllCategories())
   }, [dispatch])
 
   const ProductList = (product) => {
-    return product.map((item, i) => {
+    return product?.data?.map((item, i) => {
       return (
         <Col md="6" xl="4" sm="12" xs="12" key={i}>
           <CardProduct item={{ ...item }} />
@@ -59,6 +65,7 @@ function Home(props) {
   if (loading) {
     return <Loading />
   }
+  const pages = Math.ceil(product?.countDocs / itensPerPage)
 
   return (
     <>
@@ -77,7 +84,7 @@ function Home(props) {
         <h2>Ofertas de Hoje!</h2>
       </STextPromotion>
       <ContainerCards>
-        {!loading && product.length === 0 ? (
+        {!loading && product?.data?.length === 0 ? (
           <STextFormated>
             <h6>Não há produtos disponiveis</h6>
           </STextFormated>
@@ -85,6 +92,16 @@ function Home(props) {
           ProductList(product)
         )}
       </ContainerCards>
+      <PaginationSelector
+        itensPerPage={itensPerPage}
+        setItensPerPage={setItensPerPage}
+      />
+      <PaginationComponent
+        pages={pages}
+        currentPage={currentPage}
+        itensPerPage={itensPerPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   )
 }
