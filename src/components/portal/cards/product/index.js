@@ -12,7 +12,7 @@ import { navigate } from '@reach/router'
 import { formatPriceBr } from '../../../../util/helpers/format-price'
 
 const CardProduct = (props) => {
-  const { title, description, promotion, price, photos } = props.item
+  const { id, title, promotion, price, photos } = props.item
   return (
     <div>
       <SCard>
@@ -47,7 +47,7 @@ const CardProduct = (props) => {
               </SCardInstallments>
             </>
           )}
-          <SButton onClick={() => navigate(`/signin`)}>Adquirir</SButton>
+          <SButton onClick={() => navigate(`/product/${id}`)}>Adquirir</SButton>
         </Card.Body>
       </SCard>
     </div>
