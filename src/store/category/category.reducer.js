@@ -18,8 +18,8 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.loading = false
       return state
       
-    case TYPES.CATEGORY_ID:
-      state.categoryById = action.data
+    case TYPES.CATEGORY_PRODUCTS:
+      state.categoryProducts = action.data
       state.loading = false
       return state
 

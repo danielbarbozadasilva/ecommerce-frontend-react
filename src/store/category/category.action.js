@@ -14,12 +14,12 @@ export const listAllCategories = () => {
   }
 }
 
-export const listByIdCategory = (id) => {
+export const listByIdCategory = (categoryid) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.CATEGORY_LOADING, status: true })
     try {
-      const result = await listByIdCategoryService(id)
-      dispatch({ type: TYPES.CATEGORY_ID, data: result.data.data })
+      const result = await listByIdCategoryService(categoryid)
+      dispatch({ type: TYPES.CATEGORY_PRODUCTS, data: result.data.data[0] })
     } catch (error) {}
   }
 }
