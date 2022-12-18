@@ -24,19 +24,6 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.loading = false
       return state
 
-    case TYPES.UPDATE_QUANTITY_CART:
-      state.all = state.all
-        ? state.all.map((item, index) => {
-            return action.cartId == index
-              ? {
-                  ...item,
-                  quantity: Number(item.quantity) + Number(action.change)
-                }
-              : item
-          })
-        : []
-      return state
-
     case TYPES.REMOVE_PROD_CART:
       state.all = state.all.reduce(
         (all, item, index) =>

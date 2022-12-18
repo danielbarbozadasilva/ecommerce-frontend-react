@@ -32,9 +32,3 @@ export const removeProduct = (index) => {
   removeCart(index)
   return { type: TYPES.REMOVE_PROD_CART, cartId: index }
 }
-
-export const updateQuantity = (change, index) => ({
-  type: TYPES.UPDATE_QUANTITY_CART,
-  change,
-  cartId: index
-})
