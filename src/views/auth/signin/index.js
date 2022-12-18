@@ -2,8 +2,9 @@ import React from 'react'
 import { signInAction } from '../../../store/auth/auth.action'
 import { useDispatch } from 'react-redux'
 import FormSignIn from '../../../components/portal/auth/signin/index'
+import { Helmet } from 'react-helmet'
 
-const SignIn = () => {
+const SignIn = (props) => {
   const dispatch = useDispatch()
 
   const submitForm = async (form) => {
@@ -12,6 +13,7 @@ const SignIn = () => {
 
   return (
     <>
+      <Helmet title={props.title} />
       <FormSignIn submit={submitForm} />
     </>
   )
