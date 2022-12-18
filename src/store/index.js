@@ -7,12 +7,14 @@ import SignReducer from './auth/auth.reducer'
 import ProductReducer from './product/product.reducer'
 import CategoryReducer from './category/category.reducer'
 import RatingReducer from './rating/rating.reducer'
+import CartReducer from './cart/cart.reducer'
 
 const reducers = combineReducers({
   auth: SignReducer,
   product: ProductReducer,
   category: CategoryReducer,
   rating: RatingReducer,
+  cart: CartReducer,
   toastr: toastrReducer
 })
 
