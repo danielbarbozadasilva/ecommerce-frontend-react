@@ -43,7 +43,6 @@ function ContainerForm({ id, submit }) {
       <Form.Group className="mb-4">
         <Form.Label>Nome</Form.Label>
         <Form.Control
-          autoFocus
           disabled={loading}
           value={form.name || ''}
           type="text"
