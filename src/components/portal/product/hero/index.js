@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from '@material-ui/core'
-import { formatPriceBr } from '../../../../util/helpers/format-price'
+import { formatPriceBr } from '../../../../util/helpers/format'
+import { addCart } from '~/util/cart'
+import { navigate } from '@reach/router'
 import {
   SContainer,
   SImageStyle,
@@ -16,6 +18,8 @@ import {
 } from './styled'
 
 const Hero = (props) => {
+  const [selectedPhoto, setSelectedPhoto] = React.useState()
+  const [quantity, setQuantity] = React.useState(1)
   const {
     id,
     title,
@@ -26,8 +30,17 @@ const Hero = (props) => {
     category,
     categoryName
   } = props.data
-  const [selectedPhoto, setSelectedPhoto] = React.useState()
-  const [quantity, setQuantity] = React.useState(1)
+
+  const AddProductsCart = () => {
+    addCart({
+      title: title,
+      photos: photos,
+      product: id,
+      quantity: quantity,
+      price: promotion < price ? promotion : price
+    })
+    navigate('/cart').then(navigate(0))
+  }
 
   return (
     <>
@@ -100,11 +113,7 @@ const Hero = (props) => {
             </DisplayQuantity>
           </div>
           <div>
-            <SButton
-              // onClick={() => this.addCart()}
-            >
-              COMPRAR
-            </SButton>
+            <SButton onClick={() => AddProductsCart()}>COMPRAR</SButton>
           </div>
         </ProductDetails>
       </SContainer>
