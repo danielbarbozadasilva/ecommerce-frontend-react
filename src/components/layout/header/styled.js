@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container, Col, Navbar } from 'react-bootstrap'
+import { NavDropdown, Navbar } from 'react-bootstrap'
 
 export const SNavbar = styled(Navbar)`
   width: 100%;
@@ -23,6 +23,7 @@ export const SLink = styled.div`
   line-height: 1.5;
   list-style: none;
   padding-left: 50px;
+
   &:hover {
     text-decoration: underline;
     color: white;
@@ -33,9 +34,6 @@ export const SLink = styled.div`
     &:hover {
       background-color: #f6f7fc;
     }
-  }
-  @media screen and (max-width: 1670px) {
-    padding: 25px 40px;
   }
 `
 
@@ -49,8 +47,16 @@ export const SNavbarLogo = styled.img`
   }
 `
 
-export const SNavbarToggle = styled(Navbar.Toggle)`
-  margin: 0px 30px;
+export const SNavDropdown = styled(NavDropdown)`
+  margin: 0px 40px;
   background-color: #f6f7fc;
   color: #a59174 !important;
+  @media screen and (max-width: 995px) {
+    width: 100%;
+    text-align: center;
+  }
+`
+
+export const SIcon = styled.h3`
+  margin-bottom: 10px;
 `

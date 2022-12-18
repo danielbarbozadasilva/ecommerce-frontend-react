@@ -9,10 +9,12 @@ import Home from '../portal/home/index'
 import Error403 from '../error/403/index'
 import Error404 from '../error/404/index'
 import Error500 from '../error/500/index'
+import CategoryProducts from '../portal/categories/index'
+import ProductDetails from '../portal/product/index'
 
 const Menu = [
   {
-    title: 'Home',
+    title: 'Home - PrimeTech',
     icons: '',
     route: '/',
     visibleMenu: true,
@@ -20,7 +22,31 @@ const Menu = [
     component: Home
   },
   {
-    title: 'SignIn',
+    title: 'Produtos - PrimeTech',
+    icons: '',
+    route: '/product/search/:search',
+    visibleMenu: true,
+    enabled: true,
+    component: Home
+  },
+  {
+    title: 'Produto - PrimeTech',
+    icons: '',
+    route: '/product/:productid',
+    visibleMenu: true,
+    enabled: true,
+    component: ProductDetails
+  },
+  {
+    title: 'Categoria - PrimeTech',
+    icons: '',
+    route: '/category/:categoryid',
+    visibleMenu: true,
+    enabled: true,
+    component: CategoryProducts
+  },
+  {
+    title: 'SignIn - PrimeTech',
     icons: '',
     route: '/signin',
     visibleMenu: true,
@@ -28,7 +54,7 @@ const Menu = [
     component: SignIn
   },
   {
-    title: 'SignUp',
+    title: 'SignUp - PrimeTech',
     icons: '',
     route: '/signup',
     visibleMenu: true,
@@ -36,7 +62,7 @@ const Menu = [
     component: SignUp
   },
   {
-    title: 'recovery',
+    title: 'Recuperar senha - PrimeTech',
     icons: '',
     route: '/recovery-password',
     visibleMenu: true,
@@ -44,7 +70,7 @@ const Menu = [
     component: RecoveryPassword
   },
   {
-    title: 'recovery',
+    title: 'Recuperar senha - PrimeTech',
     icons: '',
     route: '/change-password',
     visibleMenu: true,
@@ -52,7 +78,7 @@ const Menu = [
     component: ChangePassword
   },
   {
-    title: 'NotAuthorized',
+    title: 'Não Autorizado - PrimeTech',
     icons: '',
     route: '/error403',
     visibleMenu: true,
@@ -60,7 +86,7 @@ const Menu = [
     component: Error403
   },
   {
-    title: 'NotFound',
+    title: 'Página não existe - PrimeTech',
     icons: '',
     route: '/error404',
     visibleMenu: true,
@@ -68,7 +94,7 @@ const Menu = [
     component: Error404
   },
   {
-    title: 'InternalServerError',
+    title: 'Erro - PrimeTech',
     icons: '',
     route: '/error500',
     visibleMenu: true,
@@ -82,8 +108,8 @@ const Portal = (props) => {
     <>
       <Router>
         <Layout path="/">
-          {Menu.map(({ component: Component, route, type = '' }, i) => (
-            <Component key={i} path={route} type={type} />
+          {Menu.map(({ component: Component, route, title, type = '' }, i) => (
+            <Component key={i} path={route} type={type} title={title} />
           ))}
           <Redirect from="/*" to="/error404" noThrow />
         </Layout>

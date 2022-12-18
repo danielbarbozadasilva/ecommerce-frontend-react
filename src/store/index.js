@@ -4,9 +4,15 @@ import thunk from 'redux-thunk'
 import multi from 'redux-multi'
 import { reducer as toastrReducer } from 'react-redux-toastr'
 import SignReducer from './auth/auth.reducer'
+import ProductReducer from './product/product.reducer'
+import CategoryReducer from './category/category.reducer'
+import RatingReducer from './rating/rating.reducer'
 
 const reducers = combineReducers({
   auth: SignReducer,
+  product: ProductReducer,
+  category: CategoryReducer,
+  rating: RatingReducer,
   toastr: toastrReducer
 })
 
