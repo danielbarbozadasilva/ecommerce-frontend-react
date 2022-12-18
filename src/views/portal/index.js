@@ -6,11 +6,13 @@ import SignUp from '../auth/signup/index'
 import RecoveryPassword from '../auth/recoveryPassword/index'
 import ChangePassword from '../auth/changePassword/index'
 import Home from '../portal/home/index'
+import Checkout from '../portal/checkout/index'
 import Error403 from '../error/403/index'
 import Error404 from '../error/404/index'
 import Error500 from '../error/500/index'
 import CategoryProducts from '../portal/categories/index'
 import ProductDetails from '../portal/product/index'
+import Cart from '../portal/cart/index'
 
 const Menu = [
   {
@@ -52,6 +54,22 @@ const Menu = [
     visibleMenu: true,
     enabled: true,
     component: SignIn
+  },
+  {
+    title: 'Carrinho - PrimeTech',
+    icons: '',
+    route: '/cart',
+    visibleMenu: true,
+    enabled: true,
+    component: Cart
+  },
+  {
+    title: 'Checkout - PrimeTech',
+    icons: '',
+    route: '/checkout',
+    visibleMenu: true,
+    enabled: true,
+    component: Checkout
   },
   {
     title: 'SignUp - PrimeTech',
