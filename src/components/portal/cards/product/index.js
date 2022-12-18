@@ -9,7 +9,7 @@ import {
   SCardInstallments
 } from './styled'
 import { navigate } from '@reach/router'
-import { formatPriceBr } from '../../../../util/helpers/format-price'
+import { formatPriceBr } from '../../../../util/helpers/format'
 
 const CardProduct = (props) => {
   const { id, title, promotion, price, photos } = props.item
