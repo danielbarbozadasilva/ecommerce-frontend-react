@@ -109,7 +109,11 @@ const DataCart = () => {
 
       <STotalPrice>
         <SFinishButton
-          onClick={() => navigate('/checkout')}
+          onClick={() =>
+            navigate('/checkout', {
+              state: { shipping: shipping, totalPrice: calculateTotalPrice(), zipCode: zipCode }
+            })
+          }
           disabled={!shipping}
         >
           Finalizar Pedido
