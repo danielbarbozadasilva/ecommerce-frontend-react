@@ -5,6 +5,12 @@ export function formatPriceBr(data) {
   })
 }
 
+export function formatMoney(data) {
+  return Number(
+    data.trim().replace('R$', '').replace('.', '').replace(',', '.')
+  )
+}
+
 export function formatZipCode(value) {
   const result = (value || '').match(/\d+/g)
   const zipCode = (result || []).join('')
