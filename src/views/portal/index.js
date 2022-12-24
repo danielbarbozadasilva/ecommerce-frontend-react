@@ -6,13 +6,16 @@ import SignUp from '../auth/signup/index'
 import RecoveryPassword from '../auth/recoveryPassword/index'
 import ChangePassword from '../auth/changePassword/index'
 import Home from '../portal/home/index'
-import Checkout from '../portal/checkout/index'
+import Checkout from '../private/checkout/index'
 import Error403 from '../error/403/index'
 import Error404 from '../error/404/index'
 import Error500 from '../error/500/index'
 import CategoryProducts from '../portal/categories/index'
 import ProductDetails from '../portal/product/index'
 import Cart from '../portal/cart/index'
+import BankSlipPaymentSuccess from '../payment/bankSlip/success/index'
+import BankSlipPaymentError from '../payment/error/index'
+import CreditCardSuccess from '../payment/creditCard/success/index'
 
 const Menu = [
   {
@@ -102,6 +105,38 @@ const Menu = [
     visibleMenu: true,
     enabled: true,
     component: Error403
+  },
+  {
+    title: 'Checkout - PrimeTech',
+    icons: '',
+    route: '/checkout',
+    visibleMenu: true,
+    enabled: true,
+    component: Checkout
+  },
+  {
+    title: 'Pedido realizado - PrimeTech',
+    icons: '',
+    route: '/payment/success',
+    visibleMenu: true,
+    enabled: true,
+    component: BankSlipPaymentSuccess
+  },
+  {
+    title: 'Pedido realizado - PrimeTech',
+    icons: '',
+    route: '/payment/error',
+    visibleMenu: true,
+    enabled: true,
+    component: BankSlipPaymentError
+  },
+  {
+    title: 'Pedido realizado - PrimeTech',
+    icons: '',
+    route: '/payment-card/success',
+    visibleMenu: true,
+    enabled: true,
+    component: CreditCardSuccess
   },
   {
     title: 'Página não existe - PrimeTech',
