@@ -4,7 +4,7 @@ import { SNavbar, SLink, SNavbarLogo, SNavDropdown, SIcon } from './styled'
 import LogoHeader from '../../../assets/img/header-image.jpg'
 import { Link } from '@reach/router'
 import { isAuthenticated, getUser } from '../../../config/auth'
-import { BsFillCartFill } from 'react-icons/bs'
+import IconCart from '../../cart/icon/index'
 import { logoutAction } from '../../../store/auth/auth.action'
 import { useDispatch } from 'react-redux'
 import Search from '../../search/index'
@@ -59,7 +59,7 @@ const Header = () => {
                   <SLink>
                     <NavLink to="/cart">
                       <SIcon>
-                        <BsFillCartFill />
+                        <IconCart />
                       </SIcon>
                     </NavLink>
                   </SLink>

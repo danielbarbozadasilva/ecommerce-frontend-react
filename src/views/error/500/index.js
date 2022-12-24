@@ -1,9 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap'
+import { Helmet } from 'react-helmet'
 import { SForm, STextForm } from '../styled'
 
-const Error500 = () => {
+const Error500 = (props) => {
   return (
     <Container>
+      <Helmet title={props.title} />
+
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <SForm>

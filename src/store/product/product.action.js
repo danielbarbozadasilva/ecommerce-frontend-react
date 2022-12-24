@@ -21,6 +21,7 @@ export const listByIdProduct = (id) => {
     try {
       const result = await listByIdProductService(id)
       dispatch({ type: TYPES.PRODUCT_BY_ID, data: result.data.data })
+      return result.data.data
     } catch (error) {}
   }
 }
@@ -29,7 +30,11 @@ export const searchProducts = (search, itemsPerPage, currentPage) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
-      const result = await searchProductsService(search, itemsPerPage, currentPage)
+      const result = await searchProductsService(
+        search,
+        itemsPerPage,
+        currentPage
+      )
       dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
     } catch (error) {}
   }

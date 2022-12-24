@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const SForm = styled(Form)`
   width: 40%;
-  margin: 4% 10%;
+  margin: 4% 7.7%;
 `
 
 export const SButton = styled.button`
