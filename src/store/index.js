@@ -8,6 +8,8 @@ import ProductReducer from './product/product.reducer'
 import CategoryReducer from './category/category.reducer'
 import RatingReducer from './rating/rating.reducer'
 import CartReducer from './cart/cart.reducer'
+import SolicitationReducer from './solicitation/solicitation.reducer'
+import PaymentReducer from './payment/payment.reducer'
 
 const reducers = combineReducers({
   auth: SignReducer,
@@ -15,6 +17,8 @@ const reducers = combineReducers({
   category: CategoryReducer,
   rating: RatingReducer,
   cart: CartReducer,
+  solicitation: SolicitationReducer,
+  payment: PaymentReducer,
   toastr: toastrReducer
 })
 
