@@ -9,13 +9,18 @@ const INITIAL_STATE = {
 
 const reducer = ({ ...state } = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TYPES.FETCH_LOADING:
+    case TYPES.CART_LOADING:
       state.error = []
       state.loading = action.status
       return state
 
     case TYPES.GET_CART:
       state.all = action.data
+      state.loading = false
+      return state
+
+    case TYPES.CLEAN_CART:
+      state.all = []
       state.loading = false
       return state
 

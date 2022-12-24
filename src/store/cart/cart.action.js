@@ -1,10 +1,10 @@
-import { getCart, removeCart } from '../../util/cart'
+import { getCart, removeCart, cleanCart } from '../../util/cart'
 import TYPES from '../types'
 import { calculatePriceDeliveryService } from '../../services/cart.service'
 
 export const getCartProducts = () => {
   return async (dispatch) => {
-    dispatch({ type: TYPES.FETCH_LOADING, status: true })
+    dispatch({ type: TYPES.CART_LOADING, status: true })
     try {
       const result = getCart()
       dispatch({
@@ -17,7 +17,7 @@ export const getCartProducts = () => {
 
 export const calculateShippingAction = (zipCode, cart) => {
   return async (dispatch) => {
-    dispatch({ type: TYPES.FETCH_LOADING, status: true })
+    dispatch({ type: TYPES.CART_LOADING, status: true })
     try {
       const result = await calculatePriceDeliveryService(zipCode, cart)
       dispatch({
@@ -31,4 +31,11 @@ export const calculateShippingAction = (zipCode, cart) => {
 export const removeProduct = (index) => {
   removeCart(index)
   return { type: TYPES.REMOVE_PROD_CART, cartId: index }
+}
+
+export const cleanCartAction = () => {
+  return async (dispatch) => {
+    cleanCart()
+    dispatch({ type: TYPES.REMOVE_PROD_CART })
+  }
 }
