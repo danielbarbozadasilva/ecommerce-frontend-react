@@ -35,12 +35,11 @@ export const getSessionPayment = () => {
   return async (dispatch) => {
     try {
       const result = await getSessionPaymentService()
-      PagSeguroDirectPayment.setSessionId(result.data.sessionId)
-      const senderHash = PagSeguroDirectPayment.getSenderHash()
       dispatch({
-        type: TYPES.FETCH_SENDER_HASH,
-        data: senderHash
+        type: TYPES.FETCH_SESSION_ID,
+        data: result.data.sessionId
       })
+      return result.data.sessionId
     } catch (error) {}
   }
 }

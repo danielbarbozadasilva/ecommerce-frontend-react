@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Col, Form } from 'react-bootstrap'
 import moment from 'moment'
 import InputMask from 'react-input-mask'
-import { Select } from '@material-ui/core'
+import { Select, Radio, RadioGroup, FormControlLabel } from '@material-ui/core'
 import ufCityFile from '../../../util/state-city.json'
 import { SForm, SRow, SFormGroup, STextForm, SButton } from './styled'
 import Loading from '../../loading/form/index'
@@ -41,7 +41,9 @@ const FormCheckout = ({ data, submit }) => {
   }
 
   useEffect(() => {
-    dispatch(getSessionPayment())
+    dispatch(getSessionPayment()).then((result) => {
+      PagSeguroDirectPayment.setSessionId(result)
+    })
   }, [dispatch])
 
   useEffect(() => {
@@ -126,17 +128,24 @@ const FormCheckout = ({ data, submit }) => {
       <SRow>
         <STextForm>Dados de pagamento</STextForm>
         <SFormGroup as={Col}>
-          <Form.Label>*Método de pagamento:</Form.Label>
+          <Form.Label>*Selecione um método de pagamento:</Form.Label>
           <div>
-            <Select
-              native
+            <RadioGroup
               name="paymentType"
               value={form?.paymentType || paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)}
             >
-              <option defaultValue="BOLETO">Boleto</option>
-              <option value="CREDITCARD">Cartão de Crédito</option>
-            </Select>
+              <FormControlLabel
+                value="BOLETO"
+                control={<Radio color="default" />}
+                label="Boleto"
+              />
+              <FormControlLabel
+                value="CREDITCARD"
+                control={<Radio color="default" />}
+                label="Cartão de crédito"
+              />
+            </RadioGroup>
           </div>
         </SFormGroup>
       </SRow>

@@ -10,11 +10,11 @@ import SignIn from '../../auth/signin'
 
 const Checkout = (props) => {
   const dispatch = useDispatch()
-  const senderHash = useSelector((state) => state.payment.senderHash)
   const loading = useSelector((state) => state.payment.loading)
 
   const submitForm = async (form) => {
     dispatch(createSolicitation(form)).then((resp) => {
+      const senderHash = PagSeguroDirectPayment.getSenderHash()
       const { data } = resp.data
       dispatch(
         createPayment(data.solicitation.payment, senderHash, data.paymentType)
