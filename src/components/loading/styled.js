@@ -14,8 +14,8 @@ export const SpinLoading = keyframes`
 `
 
 export const SLoading = styled.div`
-  border: 5px solid #b8b5ff;
-  border-top: 5px solid #7868e6;
+  border: 5px solid #473F57;
+  border-top: 5px solid #fff;
   border-radius: 50%;
   width: 50px;
   height: 50px;
