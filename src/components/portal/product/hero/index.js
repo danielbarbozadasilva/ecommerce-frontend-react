@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from '@material-ui/core'
 import { formatPriceBr } from '../../../../util/helpers/format'
-import { addCart } from '~/util/cart'
 import { navigate } from '@reach/router'
 import {
   SContainer,
@@ -16,10 +15,13 @@ import {
   SDescriptionPromotion,
   SDescriptionInstallments
 } from './styled'
+import { addCartProduct } from '~/store/cart/cart.action'
+import { useDispatch } from 'react-redux'
 
 const Hero = (props) => {
   const [selectedPhoto, setSelectedPhoto] = React.useState()
   const [quantity, setQuantity] = React.useState(1)
+  const dispatch = useDispatch()
   const {
     id,
     title,
@@ -32,14 +34,14 @@ const Hero = (props) => {
   } = props.data
 
   const AddProductsCart = () => {
-    addCart({
+    const data = {
       title: title,
       photos: photos,
       product: id,
       quantity: quantity,
       price: promotion < price ? promotion : price
-    })
-    navigate('/cart').then(navigate(0))
+    }
+    dispatch(addCartProduct(data)).then(navigate('/cart'))
   }
 
   return (

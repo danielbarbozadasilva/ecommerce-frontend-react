@@ -1,16 +1,18 @@
 import React from 'react'
 import { formatPriceBr } from '../../../util/helpers/format'
-import { removeCart, updateCartQuantity } from '../../../util/cart'
 import { TextTitle, CartBody, CartData, SInputQuantity, SImage } from './styled'
-import { navigate } from '@reach/router'
 import { useSelector, useDispatch } from 'react-redux'
 import { listByIdProduct } from '~/store/product/product.action'
-import { getCartProducts } from '~/store/cart/cart.action'
+import {
+  getCartProducts,
+  removeProductAction,
+  updateCartQuantityAction
+} from '~/store/cart/cart.action'
 
 const CartProduct = ({ item }) => {
-  const { title, product, price, photos } = item
+  const { title, product, quantity, price, photos } = item
   const productById = useSelector((state) => state.product.productById)
-  const [quantityProd, setQuantityProd] = React.useState(1)
+  const [quantityProd, setQuantityProd] = React.useState(quantity)
   const dispatch = useDispatch()
 
   const changeQuantity = async (e) => {
@@ -20,15 +22,15 @@ const CartProduct = ({ item }) => {
         return alert('Quantidade indisponivel no estoque.')
       }
       setQuantityProd(e.target.value)
-      updateCartQuantity(product, e.target.value)
-      dispatch(getCartProducts())
+      dispatch(updateCartQuantityAction(product, e.target.value)).then(
+        dispatch(getCartProducts())
+      )
     }
   }
 
   const removeProductCart = (key) => {
     if (window.confirm('Você deseja realmente remover esse produto?')) {
-      removeCart(key)
-      navigate(0)
+      dispatch(removeProductAction(key))
     }
   }
 

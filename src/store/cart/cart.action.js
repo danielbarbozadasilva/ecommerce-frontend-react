@@ -1,4 +1,10 @@
-import { getCart, removeCart, cleanCart } from '../../util/cart'
+import {
+  getCart,
+  removeCart,
+  cleanCart,
+  addCart,
+  updateCartQuantity
+} from '../../util/cart'
 import TYPES from '../types'
 import { calculatePriceDeliveryService } from '../../services/cart.service'
 
@@ -11,6 +17,24 @@ export const getCartProducts = () => {
         type: TYPES.GET_CART,
         data: result
       })
+    } catch (error) {}
+  }
+}
+
+export const addCartProduct = (data) => {
+  return async (dispatch) => {
+    try {
+      const result = addCart(data)
+      dispatch({ type: TYPES.ADD_CART, data: result })
+    } catch (error) {}
+  }
+}
+
+export const updateCartQuantityAction = (id, quantity) => {
+  return async (dispatch) => {
+    try {
+      const result = updateCartQuantity(id, quantity)
+      dispatch({ type: TYPES.UPDATE_CART, data: result })
     } catch (error) {}
   }
 }
@@ -28,9 +52,13 @@ export const calculateShippingAction = (zipCode, cart) => {
   }
 }
 
-export const removeProduct = (index) => {
-  removeCart(index)
-  return { type: TYPES.REMOVE_PROD_CART, cartId: index }
+export const removeProductAction = (index) => {
+  return async (dispatch) => {
+    try {
+      const result = removeCart(index)
+      dispatch({ type: TYPES.REMOVE_PROD_CART, data: result })
+    } catch (error) {}
+  }
 }
 
 export const cleanCartAction = () => {

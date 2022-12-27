@@ -19,6 +19,16 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.loading = false
       return state
 
+    case TYPES.ADD_CART:
+      state.all = action.data
+      state.loading = false
+      return state
+
+    case TYPES.UPDATE_CART:
+      state.all = action.data
+      state.loading = false
+      return state
+
     case TYPES.CLEAN_CART:
       state.all = []
       state.loading = false
@@ -30,11 +40,8 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       return state
 
     case TYPES.REMOVE_PROD_CART:
-      state.all = state.all.reduce(
-        (all, item, index) =>
-          index !== action.cartId ? all.concat([item]) : all,
-        []
-      )
+      state.all = action.data
+      state.loading = false
       return state
 
     default:
