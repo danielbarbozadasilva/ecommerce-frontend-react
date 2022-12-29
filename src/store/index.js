@@ -10,6 +10,7 @@ import RatingReducer from './rating/rating.reducer'
 import CartReducer from './cart/cart.reducer'
 import SolicitationReducer from './solicitation/solicitation.reducer'
 import PaymentReducer from './payment/payment.reducer'
+import ClientReducer from './client/client.reducer'
 
 const reducers = combineReducers({
   auth: SignReducer,
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   cart: CartReducer,
   solicitation: SolicitationReducer,
   payment: PaymentReducer,
+  client: ClientReducer,
   toastr: toastrReducer
 })
 
