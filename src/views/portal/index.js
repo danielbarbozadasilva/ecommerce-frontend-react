@@ -3,10 +3,11 @@ import { Router, Redirect } from '@reach/router'
 import Layout from '../../components/layout/main/index'
 import SignIn from '../auth/signin/index'
 import SignUp from '../auth/signup/index'
+import Profile from './profile/index'
 import RecoveryPassword from '../auth/recoveryPassword/index'
 import ChangePassword from '../auth/changePassword/index'
 import Home from '../portal/home/index'
-import Checkout from '../private/checkout/index'
+import Checkout from './checkout/index'
 import Error403 from '../error/403/index'
 import Error404 from '../error/404/index'
 import Error500 from '../error/500/index'
@@ -57,6 +58,14 @@ const Menu = [
     visibleMenu: true,
     enabled: true,
     component: SignIn
+  },
+  {
+    title: 'Usuário - PrimeTech',
+    icons: '',
+    route: '/profile',
+    visibleMenu: true,
+    enabled: true,
+    component: Profile
   },
   {
     title: 'Carrinho - PrimeTech',
