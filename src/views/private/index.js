@@ -1,0 +1,59 @@
+import { Router } from '@reach/router'
+
+import { Dashboard as DashboardIcon } from '@material-ui/icons'
+import PanelLayout from '~/components/layout/layout-panel'
+import SolicitationsAdmin from './admin/solicitations/index'
+import SolicitationsClient from './client/solicitations/index'
+import { useSelector } from 'react-redux'
+import Profile from './client/profile/index'
+import Error404 from '../error/404/index'
+
+export const Menu = [
+  {
+    title: 'Perfil',
+    icon: <DashboardIcon />,
+    route: '/profile',
+    visibleMenu: true,
+    enabled: true,
+    component: Profile,
+    authorization: ['client']
+  },
+  {
+    title: 'Pedidos',
+    icon: <DashboardIcon />,
+    route: '/solicitations',
+    visibleMenu: true,
+    enabled: true,
+    component: SolicitationsAdmin,
+    authorization: ['administrator']
+  },
+  {
+    title: 'Meus pedidos',
+    icon: <DashboardIcon />,
+    route: '/solicitations',
+    visibleMenu: true,
+    enabled: true,
+    component: SolicitationsClient,
+    authorization: ['client']
+  }
+]
+
+const Admin = () => {
+  const typeUser = useSelector((state) => state.auth.user.permissions)
+  const rotasAutorizadas = Menu.filter((route) =>
+    route.authorization.includes(typeUser)
+  )
+
+  return (
+    <Router>
+      <PanelLayout path="/">
+        {rotasAutorizadas.map(({ component: Component, route }, i) => (
+          <Component key={i} path={route} />
+        ))}
+        <Error404 default />
+      </PanelLayout>
+    </Router>
+  )
+}
+
+export default Admin
