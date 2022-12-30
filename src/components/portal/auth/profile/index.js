@@ -67,7 +67,6 @@ const Profile = ({ submit }) => {
 
   return (
     <SForm autoComplete="off">
-      <STextForm>Atualizar dados</STextForm>
       <SRow>
         <SFormGroup as={Col}>
           <Form.Label>*Nome:</Form.Label>
