@@ -2,7 +2,9 @@ import TYPES from '../types'
 
 const INITIAL_STATE = {
   loading: false,
-  all: []
+  all: [],
+  client: []
+
 }
 
 const reducer = ({ ...state } = INITIAL_STATE, action) => {
@@ -11,8 +13,18 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.error = []
       state.loading = action.status
       return state
-      
+
     case TYPES.SOLICITATION_CREATE:
+      state.loading = false
+      return state
+
+    case TYPES.SOLICITATION_ADMIN_LIST:
+      state.all = action.data
+      state.loading = false
+      return state
+
+    case TYPES.SOLICITATION_CLIENT_LIST:
+      state.client = action.data
       state.loading = false
       return state
 
