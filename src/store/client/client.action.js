@@ -3,10 +3,7 @@ import {
   listByIdClientService,
   updateClientService
 } from '../../services/client.service'
-import http from '~/config/http'
 import { toastr } from 'react-redux-toastr'
-import { saveAuth } from '~/config/auth'
-import { authService } from '~/services/auth.service'
 
 export const listByIdClientAction = (id) => {
   return async (dispatch) => {

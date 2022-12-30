@@ -6,8 +6,8 @@ import { Link } from '@reach/router'
 import { useSelector } from 'react-redux'
 import { Menu } from '../../views/private/index'
 
-const ListMenu = () => {
-  const typeUser = useSelector((state) => state.auth.user.type)
+const ListMenu = () => {  
+  const { permissions }  = useSelector((state) => state.auth.user)
   const [selectedIndex, setSelectedIndex] = React.useState(0)
 
   const handleListItemClick = (event, index) => {
@@ -15,7 +15,7 @@ const ListMenu = () => {
   }
 
   const authorizedRoutes = Menu.filter((route) =>
-    route.authorization.includes(typeUser)
+    route.authorization.includes(permissions)
   )
 
   return (
@@ -24,7 +24,7 @@ const ListMenu = () => {
         <ListItem
           button
           component={Link}
-          to={'/admin' + route}
+          to={'/private' + route}
           key={i}
           selected={selectedIndex === i}
           onClick={(event) => handleListItemClick(event, i)}

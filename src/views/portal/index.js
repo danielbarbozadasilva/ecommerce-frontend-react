@@ -3,7 +3,6 @@ import { Router, Redirect } from '@reach/router'
 import Layout from '../../components/layout/main/index'
 import SignIn from '../auth/signin/index'
 import SignUp from '../auth/signup/index'
-import Profile from './profile/index'
 import RecoveryPassword from '../auth/recoveryPassword/index'
 import ChangePassword from '../auth/changePassword/index'
 import Home from '../portal/home/index'
@@ -58,14 +57,6 @@ const Menu = [
     visibleMenu: true,
     enabled: true,
     component: SignIn
-  },
-  {
-    title: 'Usuário - PrimeTech',
-    icons: '',
-    route: '/profile',
-    visibleMenu: true,
-    enabled: true,
-    component: Profile
   },
   {
     title: 'Carrinho - PrimeTech',
@@ -165,7 +156,7 @@ const Menu = [
   }
 ]
 
-const Portal = (props) => {
+const Portal = () => {
   return (
     <>
       <Router>

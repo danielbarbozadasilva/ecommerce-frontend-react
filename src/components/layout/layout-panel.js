@@ -25,7 +25,7 @@ import { Button } from '@material-ui/core'
 const drawerWidth = 240
 
 export default function Dashboard(props) {
-  const { name, cpf, number, type } = useSelector((state) => state.auth.user)
+  const { name, email, permissions } = useSelector((state) => state.auth.user)
   const dispatch = useDispatch()
 
   const userDefinition = {
@@ -45,7 +45,7 @@ export default function Dashboard(props) {
     },
     toolbar: {
       paddingRight: 24,
-      backgroundColor: type ? userDefinition[type].color : '#666',
+      backgroundColor: '#4E6062',
       color: '#fff'
     },
     toolbarText: {
@@ -78,7 +78,7 @@ export default function Dashboard(props) {
       [theme.breakpoints.down('xs')]: {
         width: 0
       },
-      overflow: "hidden"
+      overflow: 'hidden'
     },
     menuButton: {
       marginRight: 36
@@ -88,9 +88,6 @@ export default function Dashboard(props) {
     },
     title: {
       flexGrow: 1
-    },
-    details: {
-      paddingTop: theme.spacing(1)
     },
     drawerPaper: {
       position: 'relative',
@@ -141,7 +138,7 @@ export default function Dashboard(props) {
       margin: theme.spacing(2),
       color: '#fff',
       '@media (max-width: 1900px)': {
-        marginLeft: `calc(100% - 30%)`,
+        marginLeft: `calc(100% - 30%)`
       },
       '@media (max-width: 1500px)': {
         marginLeft: '60%'
@@ -164,7 +161,7 @@ export default function Dashboard(props) {
   const handleDrawerClose = () => {
     setOpen(false)
   }
-  
+
   function handleLogout() {
     dispatch(logoutAction())
   }
@@ -188,9 +185,10 @@ export default function Dashboard(props) {
           </IconButton>
 
           <AccountCircleIcon className={classes.userIcon} />
-          <div className={classes.details}>
-            <h6> Nome: {name}</h6>
-            <h6> Cpf: {cpf}</h6>
+          <div>
+            Nome: {name}
+            <br />
+            E-mail: {email}
           </div>
           <Button onClick={handleLogout}>
             <PowerSettingsNew className={classes.userIcon} />
