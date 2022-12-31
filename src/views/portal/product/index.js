@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loading from '../../../components/loading/page/index'
 import { listByIdProduct } from '~/store/product/product.action'
 import { createRating } from '~/store/rating/rating.action'
-import TitleSection from '../../../components/dashboard/title/index'
+import Title from '../../../components/portal/title/index'
 import { isAuthenticated } from '../../../config/auth'
 import { ContainerRelatedProducts, STextFormated } from './styled'
 import { listByIdCategory } from '~/store/category/category.action'
@@ -53,13 +53,13 @@ const ProductDetails = (props) => {
 
       <ContainerHero data={product} />
 
-      <TitleSection title="Descrição" />
+      <Title text="Descrição" />
       <ContainerDescription description={product.description} />
 
-      <TitleSection title="Avaliações" />
+      <Title text="Avaliações" />
       <ContainerRating data={product} />
 
-      <TitleSection title="Produtos Relacionados" />
+      <Title text="Produtos Relacionados" />
       <ContainerRelatedProducts>
         {!loading && categoryProducts?.data.length === 0 ? (
           <STextFormated>
@@ -72,7 +72,7 @@ const ProductDetails = (props) => {
 
       {isAuthenticated() ? (
         <>
-          <TitleSection title="Deixe o seu comentário" />
+          <Title text="Deixe o seu comentário" />
           <ContainerForm id={product.id} submit={submitRating} />
         </>
       ) : (
