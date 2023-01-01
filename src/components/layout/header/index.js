@@ -51,6 +51,7 @@ const Header = () => {
                 <>
                   <SNavDropdown title={email}>
                     <NavDropdown.Item href="/private/profile">Perfil</NavDropdown.Item>
+                    <NavDropdown.Item href="/private/solicitations">Meus pedidos</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => dispatch(logoutAction())}>
                       Sair

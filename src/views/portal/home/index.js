@@ -43,7 +43,7 @@ function Home(props) {
   }, [dispatch])
 
   const ProductList = (product) => {
-    return product?.data?.map((item, i) => {
+    return product?.map((item, i) => {
       return (
         <Col md="6" xl="4" sm="12" xs="12" key={i}>
           <CardProduct item={{ ...item }} />
