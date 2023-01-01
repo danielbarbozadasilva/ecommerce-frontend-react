@@ -4,6 +4,7 @@ import { Dashboard as DashboardIcon } from '@material-ui/icons'
 import PanelLayout from '~/components/layout/layout-panel'
 import SolicitationsAdmin from './admin/solicitations/index'
 import SolicitationsClient from './client/solicitations/index'
+import Product from './admin/product/index'
 import { useSelector } from 'react-redux'
 import Profile from './client/profile/index'
 import Error404 from '../error/404/index'
@@ -25,6 +26,15 @@ export const Menu = [
     visibleMenu: true,
     enabled: true,
     component: SolicitationsAdmin,
+    authorization: ['administrator']
+  },
+  {
+    title: 'Produto',
+    icon: <DashboardIcon />,
+    route: '/products',
+    visibleMenu: true,
+    enabled: true,
+    component: Product,
     authorization: ['administrator']
   },
   {
