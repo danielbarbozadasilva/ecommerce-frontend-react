@@ -13,6 +13,7 @@ import { fieldValidate, isNotValid } from '~/util/validations/form-product'
 import { MenuItem } from '@mui/material'
 import { listAllCategories } from '~/store/category/category.action'
 import { getMoney, formatPriceField } from '~/util/validations/price-validation'
+import { formatObjectURL } from '~/util/helpers/format'
 
 const FormProductRegister = ({ submit }) => {
   const [preview, setPreview] = useState([])
@@ -33,6 +34,12 @@ const FormProductRegister = ({ submit }) => {
   }
 
   const submitForm = () => {
+    const formData = new FormData()
+
+    for (let i = 0; i < preview.length; i++) {
+      formData.append('files', preview[i])
+    }
+
     const newForm = {
       category: form.category,
       description: form.description,
@@ -45,11 +52,12 @@ const FormProductRegister = ({ submit }) => {
       weight: form.weight,
       price: formatPriceField(form.price),
       promotion: formatPriceField(form.promotion),
-      freeShipping: form.freeShipping === '1' ? true : false,
-      files: preview[0]
+      freeShipping: form.freeShipping === '1' ? true : false
     }
 
-    submit(newForm)
+    Object.keys(newForm).map((k) => formData.append(k, newForm[k]))
+
+    submit(formData)
   }
 
   React.useEffect(() => {
@@ -66,20 +74,16 @@ const FormProductRegister = ({ submit }) => {
     const data = preview.length ? preview.concat(image) : [image]
     setPreview(data)
   }
-
+ 
   return (
     <SBox>
       <form noValidate autoComplete="off">
         {preview?.length > 0 ? (
           <Grid container direction="row">
-            {
-              (console.log('preview' + JSON.stringify(preview)),
-              console.log('preview[0]' + JSON.stringify(preview[0])))
-            }
             {preview?.map((item) => {
               return (
                 <SPreview>
-                  <Image src={URL.createObjectURL(item)} />
+                  <Image src={formatObjectURL(item)} />
                   <Button onClick={() => removeImage(item)} component="label">
                     Remover
                   </Button>

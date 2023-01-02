@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 import { Button, Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  listAllProducts,
+  listProducts,
   createProduct
 } from '../../../../store/product/product.action'
 import Title from '../../../../components/dashboard/title/index'
@@ -19,7 +19,7 @@ const Product = () => {
   const loading = useSelector((state) => state.product.loading)
 
   const callProducts = useCallback(() => {
-    dispatch(listAllProducts())
+    dispatch(listProducts())
   }, [dispatch])
 
   useEffect(() => {
