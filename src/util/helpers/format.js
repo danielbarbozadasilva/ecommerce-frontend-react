@@ -18,3 +18,7 @@ export function formatZipCode(value) {
     ? zipCode.slice(0, 5) + '-' + zipCode.slice(5, 8)
     : zipCode
 }
+
+export function formatObjectURL(data){
+  return URL.createObjectURL(data)
+}
