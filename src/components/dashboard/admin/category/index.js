@@ -4,11 +4,39 @@ import Loading from '~/components/loading/page'
 import { DataGrid } from '@material-ui/data-grid'
 import { FiTrash2, FiEdit } from 'react-icons/fi'
 import { SImg } from './styled'
-import { IconButton } from '@material-ui/core'
+import { IconButton, Tooltip } from '@material-ui/core'
+import ListProduct from '~/components/dashboard/admin/product/form/list/index'
+import { More as MoreIcon } from '@material-ui/icons'
 
 const DataList = ({ data, modal, loading }) => {
+  const [modalProduct, setModalProduct] = React.useState({})
+
   const thumb = ({ formattedValue }) => {
     return <SImg src={formattedValue} />
+  }
+
+  function openProduct(row) {
+    setModalProduct({ open: true, data: row })
+  }
+
+  const actionModalProduct = ({ row }) => {
+    const result = row.product
+
+    return (
+      <>
+        <Tooltip title="Listar produtos">
+          <span>
+            <IconButton
+              onClick={() => openProduct(result)}
+              disabled={result.length ? false : true}
+              color="primary"
+            >
+              <MoreIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
+      </>
+    )
   }
 
   const actionEdit = ({ id, row }) => {
@@ -66,6 +94,15 @@ const DataList = ({ data, modal, loading }) => {
       disableColumnMenu: true
     },
     {
+      field: 'actionsproducts',
+      headerName: 'Produtos',
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: actionModalProduct,
+      disableColumnMenu: true
+    },
+    {
       field: 'actionEdit',
       headerName: 'Editar',
       renderCell: actionEdit,
@@ -90,10 +127,21 @@ const DataList = ({ data, modal, loading }) => {
   }
 
   return (
-    <BoxTable>
-      <DataGrid rows={data} columns={columns} loading={loading} pageSize={10} />
-    </BoxTable>
+    <>
+      <BoxTable>
+        <DataGrid
+          rows={data}
+          columns={columns}
+          loading={loading}
+          pageSize={10}
+        />
+      </BoxTable>
+      <ListProduct
+        open={modalProduct.open || false}
+        products={modalProduct.data}
+        close={() => setModalProduct({ ...modalProduct, open: false })}
+      />
+    </>
   )
 }
-
 export default DataList
