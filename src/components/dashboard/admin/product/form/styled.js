@@ -25,20 +25,19 @@ export const SInput = styled.input`
 `
 
 export const SBox = styled.div`
-  width: 500px;
-  padding: 20px 80px;
+  width: 550px;
+  padding: 20px 100px;
 `
 
 export const SFormControl = styled(FormControl)`
-  display: flex;
-  margin-top: 30px;
-  width: 55%;
+  display: flex!important;
+  margin-top: 30px!important;
 `
 
 export const SButton = styled(Button)`
-  margin-top: 40px;
-  background-color: #303f9f;
-  color: white;
+  margin-top: 40px!important;
+  background-color: #303f9f!important;
+  color: white!important;
   :hover {
     background-color: #5c6abc;
   }

@@ -4,7 +4,9 @@ import {
   listProductsService,
   listByIdProductService,
   searchProductsService,
-  createProductService
+  createProductService,
+  updateProductService,
+  removeProductService
 } from '../../services/product.service'
 import { toastr } from 'react-redux-toastr'
 
@@ -63,6 +65,40 @@ export const createProduct = (data) => {
       dispatch(listProducts())
     } catch (error) {
       toastr.error('Erro', 'Erro ao inserir o produto')
+    }
+  }
+}
+
+export const editProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const result = await listByIdProductService(id)
+      dispatch({ type: TYPES.PRODUCT_EDIT, data: result.data.data })
+    } catch (error) {}
+  }
+}
+
+export const updateProduct = (id, data) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.CATEGORY_LOADING, status: true })
+    try {
+      const result = await updateProductService(id, data)
+      dispatch({ type: TYPES.PRODUCT_UPDATE, data: result.data.data })
+      dispatch(listProducts())
+    } catch (error) {}
+  }
+}
+
+export const removeProduct = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
+    try {
+      await removeProductService(id)
+      toastr.success('Produto', 'Excluído com sucesso!')
+      dispatch({ type: TYPES.PRODUCT_REMOVE })
+      dispatch(listProducts())
+    } catch (error) {
+      toastr.error('Erro', 'Erro ao excluir o produto')
     }
   }
 }
