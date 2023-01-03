@@ -12,8 +12,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fieldValidate, isNotValid } from '~/util/validations/form-product'
 import { MenuItem } from '@mui/material'
 import { listAllCategories } from '~/store/category/category.action'
-import { getMoney, formatPriceField } from '~/util/validations/price-validation'
-import { formatObjectURL } from '~/util/helpers/format'
+import {
+  formatPriceField,
+  formatObjectURL,
+  getMoney
+} from '~/util/helpers/format'
 
 const FormProductRegister = ({ submit }) => {
   const [preview, setPreview] = useState([])
@@ -25,7 +28,7 @@ const FormProductRegister = ({ submit }) => {
 
   const handleChange = (props) => {
     const { value, name } = props.target
-    const message = fieldValidate(name, value)
+    const message = fieldValidate(name, value, form)
     setFormValidate({ ...formValidate, [name]: message })
     setForm({
       ...form,
@@ -74,7 +77,7 @@ const FormProductRegister = ({ submit }) => {
     const data = preview.length ? preview.concat(image) : [image]
     setPreview(data)
   }
- 
+
   return (
     <SBox>
       <form noValidate autoComplete="off">
@@ -146,6 +149,7 @@ const FormProductRegister = ({ submit }) => {
         />
 
         <TextField
+          fullWidth
           size="small"
           error={!!formValidate.price}
           margin="normal"
@@ -153,25 +157,28 @@ const FormProductRegister = ({ submit }) => {
           label="Preço"
           type="text"
           id="standard-error-helper-text"
-          inputProps={{ maxLength: 8 }}
-          value={getMoney(form.price) || ''}
+          inputProps={{ maxLength: 9 }}
+          value={form.price || ''}
           onChange={handleChange}
+          onKeyUp={(e) => setForm({ ...form, price: getMoney(e) })}
           helperText={formValidate.price || ''}
           disabled={loading}
         />
 
         <TextField
+          fullWidth
           size="small"
           error={!!formValidate.promotion}
           margin="normal"
           id="standard-error-helper-text"
           label="Promoção"
           name="promotion"
-          value={getMoney(form.promotion) || ''}
+          value={form.promotion || ''}
           onChange={handleChange}
+          onKeyUp={(e) => setForm({ ...form, promotion: getMoney(e) })}
           helperText={formValidate.promotion || ''}
           disabled={loading}
-          inputProps={{ maxLength: 8 }}
+          inputProps={{ maxLength: 9 }}
         />
 
         <SFormControl error={form.category === 0}>
