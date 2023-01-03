@@ -31,11 +31,13 @@ const Category = () => {
   }, [callCategories])
 
   const toogleModal = (type = 1, id = null) => {
-    // if (id) {
-    //   dispatch(editCategory(id)).then(() => setModal({ type, id, status: true }))
-    // } else {
-    //   setModal({ type, id, status: true })
-    // }
+    if (id) {
+      dispatch(editCategory(id)).then(() =>
+        setModal({ type, id, status: true })
+      )
+    } else {
+      setModal({ type, id, status: true })
+    }
   }
 
   const closeModal = () => setModal({ status: false, type: 1 })
@@ -43,17 +45,17 @@ const Category = () => {
   const submitForm = (form) => {
     switch (modal.type) {
       case 1:
-        // dispatch(createCategory(form))
+        dispatch(createCategory(form))
         setModal(false)
         return
 
       case 2:
-        // dispatch(updateCategory(modal.id, form))
+        dispatch(updateCategory(modal.id, form))
         setModal(false)
         return
 
       case 3:
-        // dispatch(removeCategory(modal.id)).then(() => setModal(false))
+        dispatch(removeCategory(modal.id)).then(() => setModal(false))
         return
 
       default:
@@ -74,7 +76,11 @@ const Category = () => {
 
   return (
     <>
-      <Title title="Categorias" subTitle="Página de Categorias" actions={actions} />
+      <Title
+        title="Categorias"
+        subTitle="Página de Categorias"
+        actions={actions}
+      />
       <Grid container spacing={2}>
         <Grid item md={12} xl={12}>
           <DataList data={categories} loading={loading} modal={toogleModal} />
@@ -90,7 +96,7 @@ const Category = () => {
           {modal.type === 1 ? (
             <FormCategoryRegister submit={submitForm} />
           ) : modal.type === 2 ? (
-            <FormCategoryUpdate submit={submitForm} data={categoryById}/>
+            <FormCategoryUpdate submit={submitForm} data={categoryById} />
           ) : modal.type === 3 ? (
             <Remove open={!!modal} close={closeModal} remove={submitForm} />
           ) : null}
