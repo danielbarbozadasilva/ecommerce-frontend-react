@@ -2,7 +2,7 @@ import { formatPriceField } from '../helpers/format'
 
 export function isNotValid(form, formValidate) {
   const inputs = [
-    'title',
+    'name',
     'description',
     'price',
     'promotion',

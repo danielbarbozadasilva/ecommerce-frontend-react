@@ -12,19 +12,21 @@ import { createRating } from '~/store/rating/rating.action'
 import Title from '../../../components/portal/title/index'
 import { isAuthenticated } from '../../../config/auth'
 import { ContainerRelatedProducts, STextFormated } from './styled'
-import { listByIdCategory } from '~/store/category/category.action'
+import { listProductCategoryById } from '~/store/category/category.action'
 import { Col } from 'react-bootstrap'
 
 const ProductDetails = (props) => {
   const product = useSelector((state) => state.product.productById)
-  const categoryProducts = useSelector((state) => state.category.categoryProducts)
+  const categoryProducts = useSelector(
+    (state) => state.category.categoryProducts
+  )
   const loading = useSelector((state) => state.product.loading)
-  
+
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(listByIdProduct(props.productid)).then(
-      dispatch(listByIdCategory(product.category))
+      dispatch(listProductCategoryById(product.category))
     )
   }, [dispatch])
 
