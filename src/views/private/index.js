@@ -30,21 +30,21 @@ export const Menu = [
     authorization: ['administrator']
   },
   {
-    title: 'Produto',
-    icon: <DashboardIcon />,
-    route: '/products',
-    visibleMenu: true,
-    enabled: true,
-    component: Product,
-    authorization: ['administrator']
-  },
-  {
     title: 'Categoria',
     icon: <DashboardIcon />,
     route: '/category',
     visibleMenu: true,
     enabled: true,
     component: Category,
+    authorization: ['administrator']
+  },
+  {
+    title: 'Produto',
+    icon: <DashboardIcon />,
+    route: '/products',
+    visibleMenu: true,
+    enabled: true,
+    component: Product,
     authorization: ['administrator']
   },
   {
