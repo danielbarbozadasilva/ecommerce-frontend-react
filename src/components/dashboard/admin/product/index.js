@@ -6,7 +6,7 @@ import { FiTrash2, FiEdit } from 'react-icons/fi'
 import { SImg } from './styled'
 import { IconButton } from '@material-ui/core'
 
-const DataList = ({ data, loading }) => {
+const DataList = ({ data, modal, loading }) => {
   const thumb = ({ formattedValue }) => {
     return <SImg src={formattedValue[0]} />
   }
