@@ -1,3 +1,5 @@
+import { formatPriceField } from '../helpers/format'
+
 export function isNotValid(form, formValidate) {
   const inputs = [
     'title',
@@ -20,29 +22,18 @@ export function isNotValid(form, formValidate) {
   return inputs.some((item) => invalid(item)) || validations
 }
 
-export function fieldValidate(name, value) {
+export function fieldValidate(name, value, form) {
   let message = ''
-  let regex = ''
 
   switch (name) {
     case 'title':
-      regex = /\d/g
-      if (regex.test(value)) {
-        message += 'Não pode conter números!'
-      } else if (value.trim() === '') {
-        message += 'Não pode ser vazio!'
-      } else if (value.length <= 4) {
+      if (value.length <= 4) {
         message += 'Acima de 4 caracteres!'
       }
       break
 
     case 'description':
-      regex = /\d/g
-      if (regex.test(value)) {
-        message += 'Não pode conter números!'
-      } else if (value.trim() === '') {
-        message += 'Não pode ser vazio!'
-      } else if (value.length <= 4) {
+      if (value.length <= 4) {
         message += 'Acima de 4 caracteres!'
       }
       break
@@ -58,6 +49,10 @@ export function fieldValidate(name, value) {
         message += 'Não pode ser vazio!'
       }
       break
+  }
+
+  if (formatPriceField(form.price) < formatPriceField(form.promotion)) {
+    message += 'O preço de promoção não pode ser maior que o valor do produto!'
   }
 
   return message
