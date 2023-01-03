@@ -19,6 +19,7 @@ export const addCart = (item) => {
   }
 
   localStorage.setItem('cart', JSON.stringify(cart))
+  return cart
 }
 
 export const getCart = () => JSON.parse(localStorage.getItem('cart') || '[]')
@@ -32,6 +33,7 @@ export const removeCart = (id) => {
   let cart = getCart()
   var result = cart.filter((item) => item.product !== id)
   localStorage.setItem('cart', JSON.stringify(result))
+  return result
 }
 
 export const updateCartQuantity = (id, quantity) => {
@@ -41,4 +43,6 @@ export const updateCartQuantity = (id, quantity) => {
   selected.quantity = quantity
   resultFilter.push(selected)
   localStorage.setItem('cart', JSON.stringify(resultFilter))
+  console.log(resultFilter);
+  return resultFilter
 }

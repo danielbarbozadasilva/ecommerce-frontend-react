@@ -2,6 +2,16 @@ import { Col, Form, Row } from 'react-bootstrap'
 import styled from 'styled-components'
 
 export const SForm = styled(Form)`
+  margin: 65px 40px;
+  background-color: #fafafa;
+  position: center;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    margin: 0;
+  }
+`
+
+export const SFormSignIn = styled(Form)`
   width: 85%;
   margin: 140px auto;
   background-color: #fafafa;

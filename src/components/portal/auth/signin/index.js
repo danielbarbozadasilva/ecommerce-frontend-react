@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import {
-  SForm,
+  SFormSignIn,
   SColFooter,
   STextForm,
   SButtonSignIn,
@@ -37,7 +37,7 @@ const SignIn = ({ submit }) => {
     <Container>
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <SForm>
+          <SFormSignIn>
             <STextForm>Login</STextForm>
             <Form.Group className="mb-3">
               <Form.Label>E-mail:</Form.Label>
@@ -78,7 +78,7 @@ const SignIn = ({ submit }) => {
               Esqueceu a senha?{' '}
               <STextLink href="/recovery-password">Redefinir senha</STextLink>
             </SColFooter>
-          </SForm>
+          </SFormSignIn>
         </Col>
       </Row>
     </Container>

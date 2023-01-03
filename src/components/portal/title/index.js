@@ -1,8 +1,8 @@
 import React from 'react'
 import { Title } from './styled'
 
-const TitleSection = ({ title }) => {
-  return <Title>{title}</Title>
+const TitleSection = ({ text }) => {
+  return <Title>{text}</Title>
 }
 
 export default TitleSection

@@ -15,12 +15,16 @@ export const signInAction = async (data) => {
     dispatch({ type: TYPES.SIGN_LOADING, status: true })
     try {
       const result = await authService(data)
-
       if (result.data) {
-        saveAuth(result.data.data)
-        http.defaults.headers.token = result.data.data.token
-        dispatch({ type: TYPES.SIGN_IN, data: result.data?.data })
-        navigate('/')
+        const { data } = result.data
+        saveAuth(data)
+        http.defaults.headers.token = data.token
+        dispatch({ type: TYPES.SIGN_IN, data: data })
+        if (data.userDTO.permissions === 'administrator') {
+          navigate('/private/solicitations')
+        } else {
+          navigate('/')
+        }
         toastr.success('Seja Bem-vindo(a)!', result.data.data.userDTO.name)
       }
     } catch (error) {
@@ -38,11 +42,15 @@ export const signUpAction = async (data) => {
       const result = await registerService(data)
 
       if (result.data.data) {
-        saveAuth(result.data.data)
-        http.defaults.headers.token = result.data.data.token
-        dispatch({ type: TYPES.SIGN_IN, data: result.data?.data })
-        toastr.success('Usuário', 'cadastrado com sucesso!')
-        navigate('/admin')
+        const { data } = result.data
+        saveAuth(data)
+        http.defaults.headers.token = data.token
+        dispatch({ type: TYPES.SIGN_IN, data: data })
+        if (data.userDTO.permissions === 'administrator') {
+          navigate('/private/solicitations')
+        } else {
+          navigate('/')
+        }
       }
     } catch (error) {
       const { data } = error.response

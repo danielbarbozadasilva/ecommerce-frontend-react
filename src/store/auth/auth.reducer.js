@@ -5,6 +5,8 @@ const INITIAL_STATE = {
   loading: false,
   token: getToken() || '',
   user: getUser() || {},
+  clientid: getUser().clientid,
+  userid: getUser().id,
   error: [],
   registered: false
 }
