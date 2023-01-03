@@ -3,7 +3,8 @@ import TYPES from '../types'
 const INITIAL_STATE = {
   loading: false,
   all: [],
-  categoryById: []
+  categoryById: [],
+  categoryProducts: []
 }
 
 const reducer = ({ ...state } = INITIAL_STATE, action) => {
@@ -17,9 +18,27 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.all = action.data
       state.loading = false
       return state
-      
+
     case TYPES.CATEGORY_PRODUCTS:
       state.categoryProducts = action.data
+      state.loading = false
+      return state
+
+    case TYPES.CATEGORY_CREATE:
+      state.loading = false
+      return state
+
+    case TYPES.CATEGORY_EDIT:
+      state.categoryById = action.data
+      state.loading = false
+      return state
+
+    case TYPES.CATEGORY_UPDATE:
+      state.categoryById = action.data
+      state.loading = false
+      return state
+
+    case TYPES.CATEGORY_REMOVE:
       state.loading = false
       return state
 
