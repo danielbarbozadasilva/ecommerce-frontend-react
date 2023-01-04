@@ -15,7 +15,7 @@ export const listAllProducts = (itensPerPage, currentPage) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
       const result = await listAllProductsService(itensPerPage, currentPage)
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0].data })
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
     } catch (error) {}
   }
 }
