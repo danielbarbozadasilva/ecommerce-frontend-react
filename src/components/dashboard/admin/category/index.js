@@ -7,6 +7,8 @@ import { SImg } from './styled'
 import { IconButton, Tooltip } from '@material-ui/core'
 import ListProduct from '~/components/dashboard/admin/product/form/list/index'
 import { More as MoreIcon } from '@material-ui/icons'
+import { createTheme } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 const DataList = ({ data, modal, loading }) => {
   const [modalProduct, setModalProduct] = React.useState({})
@@ -58,6 +60,25 @@ const DataList = ({ data, modal, loading }) => {
       </>
     )
   }
+
+  const theme = createTheme()
+
+  const styles = makeStyles((theme) => ({
+    root: {
+      borderLeft: 0,
+      borderRight: 0,
+      borderBottom: 0,
+      '& .cold': {
+        backgroundColor: '#b9d5ff91',
+        color: '#1a3e72'
+      },
+      '& .hot': {
+        backgroundColor: '#ff943975',
+        color: '#1a3e72'
+      }
+    }
+  }))
+  const classes = styles()
 
   const columns = [
     {
@@ -131,6 +152,14 @@ const DataList = ({ data, modal, loading }) => {
       <BoxTable>
         <DataGrid
           rows={data}
+          autoHeight
+          className={classes.root}
+          getCellClassName={(params) => {
+            if (params.field === 'availability') {
+              return params.value === 'Não' ? 'hot' : ''
+            }
+            return ''
+          }}
           columns={columns}
           loading={loading}
           pageSize={10}
