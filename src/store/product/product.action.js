@@ -36,7 +36,8 @@ export const listByIdProduct = (id) => {
     try {
       const result = await listByIdProductService(id)
       dispatch({ type: TYPES.PRODUCT_BY_ID, data: result.data.data })
-      return result.data.data
+      const { category } = result.data.data
+      return category
     } catch (error) {}
   }
 }

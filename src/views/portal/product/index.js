@@ -25,8 +25,8 @@ const ProductDetails = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(listByIdProduct(props.productid)).then(
-      dispatch(listProductCategoryById(product.category))
+    dispatch(listByIdProduct(props.productid)).then((result)=>
+      dispatch(listProductCategoryById(result))
     )
   }, [dispatch])
 
@@ -63,7 +63,7 @@ const ProductDetails = (props) => {
 
       <Title text="Produtos Relacionados" />
       <ContainerRelatedProducts>
-        {!loading && categoryProducts?.data.length === 0 ? (
+        {!loading && categoryProducts?.length === 0 ? (
           <STextFormated>
             <h6>Não há produtos disponiveis</h6>
           </STextFormated>
