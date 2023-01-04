@@ -9,6 +9,6 @@ export const listAllProductsService = (itemsPerPage, currentPage) =>
   http.get(`${baseUrl}?itemsPerPage=${itemsPerPage}&page=${currentPage}`)
 export const listProductsService = (sortType) =>
   http.get(`${baseUrl}/dashboard?sortType=${sortType}`)
-export const searchProductsService = (search, itemsPerPage, currentPage) =>
+export const searchProductsService = (search=' ', itemsPerPage, currentPage) =>
   http.get(`${baseUrl}/search/${search}?itemsPerPage=${itemsPerPage}&page=${currentPage}`)
 

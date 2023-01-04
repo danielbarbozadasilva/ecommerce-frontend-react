@@ -41,7 +41,7 @@ export const listByIdProduct = (id) => {
   }
 }
 
-export const searchProducts = (search, itemsPerPage, currentPage) => {
+export const searchProducts = (search, itemsPerPage = 100, currentPage = 0) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
@@ -50,7 +50,7 @@ export const searchProducts = (search, itemsPerPage, currentPage) => {
         itemsPerPage,
         currentPage
       )
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0].data })
     } catch (error) {}
   }
 }
