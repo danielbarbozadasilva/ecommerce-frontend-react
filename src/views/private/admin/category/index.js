@@ -14,6 +14,7 @@ import DialogModal from '../../../../components/dialog'
 import FormCategoryRegister from '../../../../components/dashboard/admin/category/form/register/index'
 import FormCategoryUpdate from '../../../../components/dashboard/admin/category/form/update/index'
 import Remove from '../../../../components/dashboard/admin/category/form/remove/index'
+import { SButton } from '../styled'
 
 const Category = () => {
   const dispatch = useDispatch()
@@ -64,14 +65,7 @@ const Category = () => {
   }
 
   const actions = () => (
-    <Button
-      onClick={() => toogleModal(1, null)}
-      variant="contained"
-      color="primary"
-      size="small"
-    >
-      Novo
-    </Button>
+    <SButton onClick={() => toogleModal(1, null)}>Novo</SButton>
   )
 
   return (

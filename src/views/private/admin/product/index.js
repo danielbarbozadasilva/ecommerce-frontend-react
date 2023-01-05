@@ -15,7 +15,7 @@ import FormProductRegister from '../../../../components/dashboard/admin/product/
 import FormProductUpdate from '../../../../components/dashboard/admin/product/form/update/index'
 import Remove from '../../../../components/dashboard/admin/product/form/remove/index'
 import Search from '~/components/dashboard/admin/product/search'
-import { StyleContainer, SearchContainer, SButton } from './styled'
+import { StyleContainer, SearchContainer, SButton } from '../styled'
 
 const Product = () => {
   const dispatch = useDispatch()
