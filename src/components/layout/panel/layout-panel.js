@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
-import { logoutAction } from '../../store/auth/auth.action'
+import { logoutAction } from '../../../store/auth/auth.action'
 import {
   Menu as MenuIcon,
   MenuOpen as MenuOpenIcon,
@@ -25,19 +25,8 @@ import { Button } from '@material-ui/core'
 const drawerWidth = 240
 
 export default function Dashboard(props) {
-  const { name, email, permissions } = useSelector((state) => state.auth.user)
+  const { name, email } = useSelector((state) => state.auth.user)
   const dispatch = useDispatch()
-
-  const userDefinition = {
-    1: {
-      title: 'Administrador',
-      color: '#4E6062'
-    },
-    2: {
-      title: 'Cliente',
-      color: '#4B3204'
-    }
-  }
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,8 +34,7 @@ export default function Dashboard(props) {
     },
     toolbar: {
       paddingRight: 24,
-      backgroundColor: '#4E6062',
-      color: '#fff'
+      color: '#aab4c1'
     },
     toolbarText: {
       display: 'flex',
@@ -62,6 +50,7 @@ export default function Dashboard(props) {
       padding: '0'
     },
     appBar: {
+      backgroundColor: '#fff',
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -90,6 +79,7 @@ export default function Dashboard(props) {
       flexGrow: 1
     },
     drawerPaper: {
+      backgroundColor: '#4f5d73',
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -133,10 +123,13 @@ export default function Dashboard(props) {
       display: 'flex',
       alignItems: 'center'
     },
+    userInfo: {
+      color: '#9da5b1'
+    },
     userIcon: {
       marginLeft: `calc(100% - 24%)`,
       margin: theme.spacing(2),
-      color: '#fff',
+      color: '#9da5b1',
       '@media (max-width: 1900px)': {
         marginLeft: `calc(100% - 30%)`
       },
@@ -185,13 +178,13 @@ export default function Dashboard(props) {
           </IconButton>
 
           <AccountCircleIcon className={classes.userIcon} />
-          <div>
+          <div className={classes.userInfo}>
             Nome: {name}
             <br />
             E-mail: {email}
           </div>
           <Button onClick={handleLogout}>
-            <PowerSettingsNew className={classes.userIcon} />
+            <PowerSettingsNew className={classes.userInfo} />
           </Button>
         </Toolbar>
       </AppBar>

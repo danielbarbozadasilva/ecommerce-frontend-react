@@ -2,7 +2,14 @@ import { Router } from '@reach/router'
 import { useSelector } from 'react-redux'
 
 import { Dashboard as DashboardIcon } from '@material-ui/icons'
-import PanelLayout from '~/components/layout/layout-panel'
+import {
+  ShoppingBag,
+  AccountBox,
+  Group,
+  StarBorder,
+  ShoppingCart
+} from '@mui/icons-material'
+import PanelLayout from '~/components/layout/panel/layout-panel'
 import SolicitationsAdmin from './admin/solicitations/index'
 import SolicitationsClient from './client/solicitations/index'
 import Profile from './client/profile/index'
@@ -15,7 +22,7 @@ import Rating from './admin/rating'
 export const Menu = [
   {
     title: 'Perfil',
-    icon: <DashboardIcon />,
+    icon: <AccountBox />,
     route: '/profile',
     visibleMenu: true,
     enabled: true,
@@ -24,7 +31,7 @@ export const Menu = [
   },
   {
     title: 'Pedidos',
-    icon: <DashboardIcon />,
+    icon: <ShoppingBag />,
     route: '/solicitations',
     visibleMenu: true,
     enabled: true,
@@ -42,7 +49,7 @@ export const Menu = [
   },
   {
     title: 'Produtos',
-    icon: <DashboardIcon />,
+    icon: <ShoppingCart />,
     route: '/products',
     visibleMenu: true,
     enabled: true,
@@ -51,7 +58,7 @@ export const Menu = [
   },
   {
     title: 'Clientes',
-    icon: <DashboardIcon />,
+    icon: <Group />,
     route: '/clients',
     visibleMenu: true,
     enabled: true,
@@ -60,7 +67,7 @@ export const Menu = [
   },
   {
     title: 'Avaliações',
-    icon: <DashboardIcon />,
+    icon: <StarBorder />,
     route: '/rating',
     visibleMenu: true,
     enabled: true,

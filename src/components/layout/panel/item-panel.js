@@ -1,10 +1,9 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
 import { Link } from '@reach/router'
 import { useSelector } from 'react-redux'
-import { Menu } from '../../views/private/index'
+import { Menu } from '../../../views/private/index'
+import {SListItemIcon, SListItemText} from './styled'
 
 const ListMenu = () => {  
   const { permissions }  = useSelector((state) => state.auth.user)
@@ -29,8 +28,8 @@ const ListMenu = () => {
           selected={selectedIndex === i}
           onClick={(event) => handleListItemClick(event, i)}
         >
-          <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText primary={title} />
+          <SListItemIcon>{icon}</SListItemIcon>
+          <SListItemText primary={title} />
         </ListItem>
       ))}
     </div>
