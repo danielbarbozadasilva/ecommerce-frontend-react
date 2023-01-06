@@ -11,8 +11,17 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.error = []
       state.loading = action.status
       return state
-      
+
     case TYPES.RATING_CREATE:
+      state.loading = false
+      return state
+
+    case TYPES.RATING_LIST_ALL:
+      state.all = action.data
+      state.loading = false
+      return state
+
+    case TYPES.RATING_REMOVE:
       state.loading = false
       return state
 
