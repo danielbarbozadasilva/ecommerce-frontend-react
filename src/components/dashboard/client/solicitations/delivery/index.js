@@ -10,14 +10,6 @@ import DataList from '~/components/datagrid'
 const ListDelivery = ({ data, open, close }) => {
   const columns = [
     {
-      field: 'trackingCode',
-      headerName: 'Cod.',
-      align: 'center',
-      headerAlign: 'center',
-      flex: 1,
-      disableColumnMenu: true
-    },
-    {
       field: 'price',
       headerName: 'Preço',
       align: 'center',
