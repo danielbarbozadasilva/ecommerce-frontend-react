@@ -9,6 +9,8 @@ import Profile from './client/profile/index'
 import Error404 from '../error/404/index'
 import Product from './admin/product/index'
 import Category from './admin/category'
+import Client from './admin/client'
+import Rating from './admin/rating'
 
 export const Menu = [
   {
@@ -30,7 +32,7 @@ export const Menu = [
     authorization: ['administrator']
   },
   {
-    title: 'Categoria',
+    title: 'Categorias',
     icon: <DashboardIcon />,
     route: '/category',
     visibleMenu: true,
@@ -39,12 +41,30 @@ export const Menu = [
     authorization: ['administrator']
   },
   {
-    title: 'Produto',
+    title: 'Produtos',
     icon: <DashboardIcon />,
     route: '/products',
     visibleMenu: true,
     enabled: true,
     component: Product,
+    authorization: ['administrator']
+  },
+  {
+    title: 'Clientes',
+    icon: <DashboardIcon />,
+    route: '/clients',
+    visibleMenu: true,
+    enabled: true,
+    component: Client,
+    authorization: ['administrator']
+  },
+  {
+    title: 'Avaliações',
+    icon: <DashboardIcon />,
+    route: '/rating',
+    visibleMenu: true,
+    enabled: true,
+    component: Rating,
     authorization: ['administrator']
   },
   {
