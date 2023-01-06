@@ -14,7 +14,7 @@ import {
 } from './styled.js'
 import {
   listAllCategories,
-  listByIdCategory
+  listProductCategoryById
 } from '../../../store/category/category.action'
 import CarouselUncontrolled from '../../../components/carousel/index'
 import Slider from 'react-slick'
@@ -32,7 +32,9 @@ function CategoryProducts(props) {
 
   useEffect(() => {
     dispatch(listAllCategories())
-    dispatch(listByIdCategory(props.categoryid, currentPage, itensPerPage))
+    dispatch(
+      listProductCategoryById(props.categoryid, currentPage, itensPerPage)
+    )
   }, [dispatch, currentPage, itensPerPage])
 
   const ProductList = (product) => {

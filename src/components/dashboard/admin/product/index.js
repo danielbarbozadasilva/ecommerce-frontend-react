@@ -5,6 +5,8 @@ import { DataGrid } from '@material-ui/data-grid'
 import { FiTrash2, FiEdit } from 'react-icons/fi'
 import { SImg } from './styled'
 import { IconButton } from '@material-ui/core'
+import { createTheme } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 const DataList = ({ data, modal, loading }) => {
   const thumb = ({ formattedValue }) => {
@@ -129,9 +131,42 @@ const DataList = ({ data, modal, loading }) => {
     return <Loading />
   }
 
+  const theme = createTheme()
+
+  const styles = makeStyles((theme) => ({
+    root: {
+      borderLeft: 0,
+      borderRight: 0,
+      borderBottom: 0,
+      '& .cold': {
+        backgroundColor: '#b9d5ff91',
+        color: '#1a3e72'
+      },
+      '& .hot': {
+        backgroundColor: '#ff943975',
+        color: '#1a3e72'
+      }
+    }
+  }))
+
+  const classes = styles()
+
   return (
     <BoxTable>
-      <DataGrid rows={data} columns={columns} loading={loading} pageSize={10} />
+      <DataGrid
+        rows={data}
+        autoHeight
+        className={classes.root}
+        getCellClassName={(params) => {
+          if (params.field === 'quantity') {
+            return params.value < 5 ? 'hot' : ''
+          }
+          return ''
+        }}
+        columns={columns}
+        loading={loading}
+        pageSize={10}
+      />
     </BoxTable>
   )
 }

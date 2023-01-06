@@ -8,12 +8,12 @@ const INITIAL_STATE = {
 
 const reducer = ({ ...state } = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TYPES.CATEGORY_LOADING:
+    case TYPES.CLIENT_LOADING:
       state.error = []
       state.loading = action.status
       return state
 
-    case TYPES.CATEGORY_ALL:
+    case TYPES.CLIENT_ALL:
       state.all = action.data
       state.loading = false
       return state

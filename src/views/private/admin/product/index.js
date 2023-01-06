@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
-import { Button, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   listProducts,
@@ -14,6 +14,8 @@ import DialogModal from '../../../../components/dialog'
 import FormProductRegister from '../../../../components/dashboard/admin/product/form/register/index'
 import FormProductUpdate from '../../../../components/dashboard/admin/product/form/update/index'
 import Remove from '../../../../components/dashboard/admin/product/form/remove/index'
+import Search from '~/components/dashboard/admin/product/search'
+import { StyleContainer, SearchContainer, SButton } from '../styled'
 
 const Product = () => {
   const dispatch = useDispatch()
@@ -62,14 +64,18 @@ const Product = () => {
   }
 
   const actions = () => (
-    <Button
-      onClick={() => toogleModal(1, null)}
-      variant="contained"
-      color="primary"
-      size="small"
-    >
-      Novo
-    </Button>
+    <StyleContainer>
+      <SearchContainer>
+        <Search />
+      </SearchContainer>
+      <div>
+        <SButton
+          onClick={() => toogleModal(1, null)}
+        >
+          Novo
+        </SButton>
+      </div>
+    </StyleContainer>
   )
 
   return (
@@ -90,7 +96,7 @@ const Product = () => {
           {modal.type === 1 ? (
             <FormProductRegister submit={submitForm} />
           ) : modal.type === 2 ? (
-            <FormProductUpdate submit={submitForm} data={productById}/>
+            <FormProductUpdate submit={submitForm} data={productById} />
           ) : modal.type === 3 ? (
             <Remove open={!!modal} close={closeModal} remove={submitForm} />
           ) : null}

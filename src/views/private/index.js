@@ -1,13 +1,14 @@
 import { Router } from '@reach/router'
+import { useSelector } from 'react-redux'
 
 import { Dashboard as DashboardIcon } from '@material-ui/icons'
 import PanelLayout from '~/components/layout/layout-panel'
 import SolicitationsAdmin from './admin/solicitations/index'
 import SolicitationsClient from './client/solicitations/index'
-import Product from './admin/product/index'
-import { useSelector } from 'react-redux'
 import Profile from './client/profile/index'
 import Error404 from '../error/404/index'
+import Product from './admin/product/index'
+import Category from './admin/category'
 
 export const Menu = [
   {
@@ -26,6 +27,15 @@ export const Menu = [
     visibleMenu: true,
     enabled: true,
     component: SolicitationsAdmin,
+    authorization: ['administrator']
+  },
+  {
+    title: 'Categoria',
+    icon: <DashboardIcon />,
+    route: '/category',
+    visibleMenu: true,
+    enabled: true,
+    component: Category,
     authorization: ['administrator']
   },
   {

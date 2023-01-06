@@ -15,7 +15,7 @@ export const listAllProducts = (itensPerPage, currentPage) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
       const result = await listAllProductsService(itensPerPage, currentPage)
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0].data })
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
     } catch (error) {}
   }
 }
@@ -36,12 +36,13 @@ export const listByIdProduct = (id) => {
     try {
       const result = await listByIdProductService(id)
       dispatch({ type: TYPES.PRODUCT_BY_ID, data: result.data.data })
-      return result.data.data
+      const { category } = result.data.data
+      return category
     } catch (error) {}
   }
 }
 
-export const searchProducts = (search, itemsPerPage, currentPage) => {
+export const searchProducts = (search, itemsPerPage = 100, currentPage = 0) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
@@ -50,7 +51,7 @@ export const searchProducts = (search, itemsPerPage, currentPage) => {
         itemsPerPage,
         currentPage
       )
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0].data })
     } catch (error) {}
   }
 }
