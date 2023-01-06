@@ -1,12 +1,12 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { searchProducts } from '~/store/product/product.action'
+import { searchClientAction } from '~/store/client/client.action'
 import SearchIcon from '@material-ui/icons/Search'
 import { SIconButton } from './styled'
 
 const Search = () => {
-  const [search, setSearch] = React.useState(' ')
+  const [search, setSearch] = React.useState('')
   const dispatch = useDispatch()
 
   const handleChange = async (props) => {
@@ -15,7 +15,7 @@ const Search = () => {
   }
 
   const submitForm = () => {
-    dispatch(searchProducts(search))
+    dispatch(searchClientAction(search))
   }
 
   return (

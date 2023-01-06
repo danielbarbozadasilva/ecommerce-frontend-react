@@ -33,15 +33,15 @@ const ListProduct = ({ open, close, products }) => {
     <Dialog
       open={open}
       onClose={close}
-      aria-labelledby='alert-dialog-title'
-      aria-describedby='alert-dialog-description'
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id='alert-dialog-title'>Lista de produtos</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Lista de produtos</DialogTitle>
       <DialogContent style={{ width: '500px ' }}>
         <DataList data={products} columns={columnProduct} loading={false} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={close} color='primary' autoFocus>
+        <Button onClick={close} color="primary" autoFocus>
           fechar
         </Button>
       </DialogActions>
