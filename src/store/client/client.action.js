@@ -1,9 +1,32 @@
 import TYPES from '../types'
-import {
-  listByIdClientService,
-  updateClientService
-} from '../../services/client.service'
 import { toastr } from 'react-redux-toastr'
+import {
+  listAllClientService,
+  listByIdClientService,
+  updateClientService,
+  removeClientService,
+  searchClientService
+} from '../../services/client.service'
+
+export const listAllClientAction = () => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.CLIENT_LOADING, status: true })
+    try {
+      const result = await listAllClientService()
+      dispatch({ type: TYPES.CLIENT_ALL, data: result.data.data })
+    } catch (error) {}
+  }
+}
+
+export const searchClientAction = (search) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.CLIENT_LOADING, status: true })
+    try {
+      const result = await searchClientService(search)
+      dispatch({ type: TYPES.CLIENT_ALL, data: result.data.data })
+    } catch (error) {}
+  }
+}
 
 export const listByIdClientAction = (id) => {
   return async (dispatch) => {
@@ -30,6 +53,18 @@ export const updateClientProfileAction = (clientid, userid, data) => {
       }
     } catch (error) {
       toastr.error('Erro ao atualizar o perfil!')
+    }
+  }
+}
+
+export const removeClientAction = (clientid) => {
+  return async (dispatch) => {
+    try {
+      await removeClientService(clientid)
+      dispatch(listAllClientAction())
+      toastr.success('Cliente removido com sucesso!')
+    } catch (error) {
+      toastr.error('Erro ao remover o cliente!')
     }
   }
 }
