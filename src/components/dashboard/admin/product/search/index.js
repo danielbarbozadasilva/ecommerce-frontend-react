@@ -11,7 +11,7 @@ const Search = () => {
 
   const handleChange = async (props) => {
     const { value } = props.target
-    setSearch(value.trim())
+    setSearch(value)
   }
 
   const submitForm = () => {
