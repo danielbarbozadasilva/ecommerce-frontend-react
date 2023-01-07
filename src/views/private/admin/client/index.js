@@ -11,8 +11,9 @@ import DialogModal from '../../../../components/dialog'
 import Remove from '../../../../components/dashboard/admin/client/form/remove/index'
 import Search from '~/components/dashboard/admin/client/search'
 import { StyleContainer, SearchContainer } from '../styled'
+import { Helmet } from 'react-helmet'
 
-const Client = () => {
+const Client = (props) => {
   const dispatch = useDispatch()
   const [modal, setModal] = React.useState({})
   const clients = useSelector((state) => state.client.all)
@@ -46,6 +47,7 @@ const Client = () => {
 
   return (
     <>
+      <Helmet title={props.title} />
       <Title title="Clientes" subTitle="Página de Clientes" actions={actions} />
       <Grid container spacing={2}>
         <Grid item md={12} xl={12}>

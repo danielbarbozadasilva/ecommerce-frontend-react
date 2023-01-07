@@ -15,8 +15,9 @@ import FormCategoryRegister from '../../../../components/dashboard/admin/categor
 import FormCategoryUpdate from '../../../../components/dashboard/admin/category/form/update/index'
 import Remove from '../../../../components/dashboard/admin/category/form/remove/index'
 import { SButton } from '../styled'
+import { Helmet } from 'react-helmet'
 
-const Category = () => {
+const Category = (props) => {
   const dispatch = useDispatch()
   const [modal, setModal] = React.useState({})
   const categories = useSelector((state) => state.category.all)
@@ -70,6 +71,7 @@ const Category = () => {
 
   return (
     <>
+      <Helmet title={props.title} />
       <Title
         title="Categorias"
         subTitle="Página de Categorias"

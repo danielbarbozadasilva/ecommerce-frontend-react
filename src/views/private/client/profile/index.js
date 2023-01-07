@@ -7,8 +7,9 @@ import {
   updateClientProfileAction
 } from '~/store/client/client.action'
 import Title from '../../../../components/dashboard/title/index'
+import { Helmet } from 'react-helmet'
 
-const Profile = () => {
+const Profile = (props) => {
   const dispatch = useDispatch()
   const clientid = useSelector((state) => state.auth.clientid)
   const userid = useSelector((state) => state.auth.userid)
@@ -25,11 +26,12 @@ const Profile = () => {
   useEffect(() => {
     dispatch(listByIdClientAction(clientid))
   }, [dispatch])
-  
+
   const actions = () => null
 
   return (
     <>
+      <Helmet title={props.title} />
       <Title title="Profile" actions={actions} />
       <ProfileForm submit={submitForm} />
     </>

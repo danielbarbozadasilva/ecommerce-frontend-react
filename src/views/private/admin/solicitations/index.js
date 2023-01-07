@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listAllSolicitationsAction } from '../../../../store/solicitation/solicitation.action'
 import Title from '../../../../components/dashboard/title/index'
 import DataList from '../../../../components/dashboard/client/solicitations/index'
+import { Helmet } from 'react-helmet'
 
-const SolicitationsAdmin = () => {
+const SolicitationsAdmin = (props) => {
   const dispatch = useDispatch()
   const client = useSelector((state) => state.solicitation.all)
   const loading = useSelector((state) => state.solicitation.loading)
@@ -22,6 +23,7 @@ const SolicitationsAdmin = () => {
 
   return (
     <>
+      <Helmet title={props.title} />
       <Title title="Pedidos" subTitle="Página de Pedidos" actions={actions} />
       <Grid container spacing={2}>
         <Grid item md={12} xl={12}>

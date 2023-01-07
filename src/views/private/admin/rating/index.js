@@ -9,8 +9,9 @@ import Title from '../../../../components/dashboard/title/index'
 import DataList from '../../../../components/dashboard/admin/rating/index'
 import DialogModal from '../../../../components/dialog'
 import Remove from '../../../../components/dashboard/admin/rating/form/remove/index'
+import { Helmet } from 'react-helmet'
 
-const Rating = () => {
+const Rating = (props) => {
   const dispatch = useDispatch()
   const [modal, setModal] = React.useState({})
   const rating = useSelector((state) => state.rating.all)
@@ -40,6 +41,7 @@ const Rating = () => {
 
   return (
     <>
+      <Helmet title={props.title} />
       <Title
         title="Avaliações"
         subTitle="Página de avaliações"

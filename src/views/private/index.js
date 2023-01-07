@@ -94,8 +94,8 @@ const Admin = () => {
   return (
     <Router>
       <PanelLayout path="/">
-        {rotasAutorizadas.map(({ component: Component, route }, i) => (
-          <Component key={i} path={route} />
+        {rotasAutorizadas.map(({ component: Component, route, title }, i) => (
+          <Component key={i} path={route} title={title} />
         ))}
         <Error404 default />
       </PanelLayout>
