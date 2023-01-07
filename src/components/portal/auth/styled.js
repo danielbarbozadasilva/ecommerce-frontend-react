@@ -10,6 +10,18 @@ export const SForm = styled(Form)`
     margin: 0;
   }
 `
+export const SFormSignUp = styled(Form)`
+  width: 85%;
+  margin: 140px auto;
+  background-color: #fafafa;
+  box-shadow: 0px 2px 15px 6px rgba(0, 0, 0, 0.11);
+  padding: 50px;
+  position: center;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    margin: 0;
+  }
+`
 
 export const SFormSignIn = styled(Form)`
   width: 85%;

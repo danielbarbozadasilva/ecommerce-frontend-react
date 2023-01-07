@@ -3,7 +3,8 @@ import {
   authService,
   registerService,
   recoveryPasswordService,
-  changePasswordService
+  changePasswordService,
+  searchZipCodeService
 } from '../../services/auth.service'
 import http from '../../config/http'
 import { navigate } from '@reach/router'
@@ -73,6 +74,13 @@ export const recoveryPasswordAction = (data) => {
       dispatch({ type: TYPES.SIGN_ERROR, data: error })
     }
   }
+}
+
+export const searchZipCode = async (data) => {
+  try {
+    const result = await searchZipCodeService(data)
+    return result.data
+  } catch (error) {}
 }
 
 export const changePasswordAction = (data) => {
