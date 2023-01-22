@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-import DataList from '~/components/datagrid'
+import DataList from '~/components/dashboard/datagrid'
 
 const ListProduct = ({ open, close, products }) => {
   const columnProduct = [

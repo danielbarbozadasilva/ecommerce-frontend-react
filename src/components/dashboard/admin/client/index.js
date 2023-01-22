@@ -1,5 +1,5 @@
 import React from 'react'
-import { BoxTable } from '../../datagrid/styled'
+import { BoxTable } from '../../datalist/styled'
 import Loading from '~/components/loading/page'
 import { DataGrid } from '@material-ui/data-grid'
 import { FiTrash2 } from 'react-icons/fi'
