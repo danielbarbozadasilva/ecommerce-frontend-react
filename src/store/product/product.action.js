@@ -79,6 +79,20 @@ export const editProduct = (id) => {
   }
 }
 
+export const searchProductPortal = (search, itemsPerPage = 100, currentPage = 0) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
+    try {
+      const result = await searchProductsService(
+        search,
+        itemsPerPage,
+        currentPage
+      )
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
+    } catch (error) {}
+  }
+}
+
 export const updateProduct = (id, data) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.CATEGORY_LOADING, status: true })

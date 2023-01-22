@@ -14,7 +14,7 @@ import {
 } from './styled.js'
 import {
   listAllProducts,
-  searchProducts
+  searchProductPortal
 } from '../../../store/product/product.action'
 import { listAllCategories } from '../../../store/category/category.action'
 import CarouselUncontrolled from '../../../components/carousel/index'
@@ -38,7 +38,7 @@ function Home(props) {
 
   useEffect(() => {
     if (props.search) {
-      dispatch(searchProducts(props.search, itensPerPage, currentPage))
+      dispatch(searchProductPortal(props.search, itensPerPage, currentPage))
     }
   }, [dispatch])
 
