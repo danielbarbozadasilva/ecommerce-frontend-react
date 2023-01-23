@@ -10,6 +10,7 @@ import {
   ContainerCategories,
   STextPromotion,
   STextFormated,
+  SContainerFilter,
   settings
 } from './styled.js'
 import {
@@ -22,6 +23,7 @@ import Slider from 'react-slick'
 import Helmet from 'react-helmet'
 import PaginationSelector from '../../../components/paginate/selector/index'
 import PaginationComponent from '../../../components/paginate/index'
+import FilterProduct from '~/components/portal/filter'
 
 function Home(props) {
   const dispatch = useDispatch()
@@ -83,6 +85,11 @@ function Home(props) {
       <STextPromotion>
         <h2>Ofertas de Hoje!</h2>
       </STextPromotion>
+
+      <SContainerFilter>
+        <FilterProduct />
+      </SContainerFilter>
+      
       <ContainerCards>
         {!loading && product?.data?.length === 0 ? (
           <STextFormated>
