@@ -595,7 +595,7 @@ const FormCheckout = ({ data, submit }) => {
           onClick={submitForm}
           disabled={isNotValid(form, formValidate, paymentMethod)}
         >
-          Cadastrar
+          Finalizar
         </SButton>
       )}
     </SForm>
