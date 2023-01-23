@@ -10,11 +10,11 @@ import {
 } from '../../services/product.service'
 import { toastr } from 'react-redux-toastr'
 
-export const listAllProducts = (itensPerPage, currentPage) => {
+export const listAllProducts = (itensPerPage, currentPage, sortType) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
-      const result = await listAllProductsService(itensPerPage, currentPage)
+      const result = await listAllProductsService(itensPerPage, currentPage, sortType)
       dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
     } catch (error) {}
   }
@@ -22,10 +22,9 @@ export const listAllProducts = (itensPerPage, currentPage) => {
 
 export const listProducts = (sortType) => {
   return async (dispatch) => {
-    dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
       const result = await listProductsService(sortType)
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data })
+      dispatch({ type: TYPES.PRODUCT_WITH_FILTER, data: result.data.data })
     } catch (error) {}
   }
 }

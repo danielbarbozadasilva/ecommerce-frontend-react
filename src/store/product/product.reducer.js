@@ -17,7 +17,10 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
       state.all = action.data
       state.loading = false
       return state
-
+    case TYPES.PRODUCT_WITH_FILTER:
+      state.all = action.data
+      state.loading = false
+      return state
     case TYPES.PRODUCT_BY_ID:
       state.productById = action.data
       state.loading = false
