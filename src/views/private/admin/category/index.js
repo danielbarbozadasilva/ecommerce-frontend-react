@@ -84,7 +84,7 @@ const Category = (props) => {
       </Grid>
 
       <DialogModal
-        title="Produto"
+        title="Categoria"
         open={modal.status || false}
         close={closeModal}
       >
