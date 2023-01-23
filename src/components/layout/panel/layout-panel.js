@@ -127,7 +127,7 @@ export default function Dashboard(props) {
       color: '#9da5b1'
     },
     userIcon: {
-      marginLeft: `calc(100% - 24%)`,
+      marginLeft: `calc(100% - 27%)`,
       margin: theme.spacing(2),
       color: '#9da5b1',
       '@media (max-width: 1900px)': {
