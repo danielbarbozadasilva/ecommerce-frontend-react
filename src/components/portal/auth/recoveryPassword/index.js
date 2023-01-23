@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import { SForm, STextForm, SButtonFormRecovery } from '../styled'
+import { SFormRecovery, STextForm, SButtonFormRecovery } from '../styled'
 import Loading from '../../../loading/form/index'
 import {
   fieldValidate,
@@ -31,7 +31,7 @@ const FormRecoveryPassword = ({ submit }) => {
     <Container>
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <SForm>
+          <SFormRecovery>
             <STextForm>Recuperar senha</STextForm>
             <Form.Group className="mb-3">
               <Form.Label>E-mail:</Form.Label>
@@ -59,7 +59,7 @@ const FormRecoveryPassword = ({ submit }) => {
                 Redefinir senha
               </SButtonFormRecovery>
             )}
-          </SForm>
+          </SFormRecovery>
         </Col>
       </Row>
     </Container>
