@@ -226,7 +226,7 @@ RF014 – O sistema deve calcular o valor de entrega dos produtos.
 <br/>
 <br/>
 
-## **Portal - carrinho**
+## **Portal - Tela de carrinho**
 <br/>
 <img src="./src/assets/img/prints/16.png" alt=""/>
 <br/>
@@ -243,7 +243,7 @@ RF014 – O sistema deve calcular o valor de entrega dos produtos.
 <br/>
 
 
-## **Portal - Pedido concluido**
+## **Portal - Pedido concluído**
 <br/>
 <img src="./src/assets/img/prints/18.png" alt=""/>
 <br/>
@@ -267,7 +267,7 @@ RF014 – O sistema deve calcular o valor de entrega dos produtos.
 <br/>
 <br/>
 
-## **Dashboard Cliente - lista de pedidos**
+## **Dashboard Cliente - listar pedidos**
 <br/>
 <img src="./src/assets/img/prints/12.png" alt=""/>
 <br/>
