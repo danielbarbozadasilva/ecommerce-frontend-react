@@ -1,10 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { listAllProducts } from '../../../store/product/product.action'
 import { Select } from '@material-ui/core'
 import { SBox, STitle } from './styled'
 
 const FilterProduct = () => {
+  const sort = useSelector((state) => state.product.sort)
   const dispatch = useDispatch()
 
   const handleChange = async (props) => {
@@ -16,8 +17,8 @@ const FilterProduct = () => {
     <SBox>
       <STitle>Ordenar</STitle>
       <div>
-        <Select native defaultValue={'alfabetica_a-z'} onChange={handleChange}>
-          <option value="alfabetica_a-z">selecione</option>
+        <Select native defaultValue={sort} onChange={handleChange}>
+          <option value="selecione">selecione</option>
           <option value="alfabetica_a-z">Ordem alfabética crescente</option>
           <option value="alfabetica_z-a">Ordem alfabética decrescente</option>
           <option value="price-crescente">Menor preço</option>
