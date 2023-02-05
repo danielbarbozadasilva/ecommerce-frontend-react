@@ -1,0 +1,328 @@
+import React, { useState } from 'react'
+import {
+  TextField,
+  Button,
+  Grid,
+  Select,
+  FormHelperText,
+  InputLabel
+} from '@material-ui/core'
+import { SBox, Image, SButton, SPreview, SFormControl } from '../styled'
+import { useDispatch, useSelector } from 'react-redux'
+import { fieldValidate, isNotValid } from '~/util/validations/form-product'
+import { MenuItem } from '@mui/material'
+import { listAllCategories } from '~/store/category/category.action'
+import {
+  formatPriceField,
+  formatObjectURL,
+  getMoney,
+  formatPriceBr
+} from '~/util/helpers/format'
+
+const FormProductUpdate = ({ submit, data }) => {
+  const [preview, setPreview] = useState(data.photos)
+  const [form, setForm] = useState({
+    ...data,
+    price: formatPriceBr(data.price),
+    promotion: formatPriceBr(data.promotion)
+  })
+  const [formValidate, setFormValidate] = useState({})
+  const categories = useSelector((state) => state.category.all)
+  const loading = useSelector((state) => state.product.loading)
+  const dispatch = useDispatch()
+
+  const handleChange = (props) => {
+    const { value, name } = props.target
+    const message = fieldValidate(name, value, form)
+    setFormValidate({ ...formValidate, [name]: message })
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+  const submitForm = () => {
+    const formData = new FormData()
+
+    for (let i = 0; i < preview.length; i++) {
+      formData.append('files', preview[i])
+    }
+
+    const newForm = {
+      category: form.category,
+      description: form.description,
+      width: form.width,
+      height: form.height,
+      depth: form.depth,
+      quantity: form.quantity,
+      sku: form.sku,
+      title: form.title,
+      weight: form.weight,
+      price: formatPriceField(form.price),
+      promotion: formatPriceField(form.promotion),
+      freeShipping: form.freeShipping === '1' ? true : false
+    }
+
+    Object.keys(newForm).map((k) => formData.append(k, newForm[k]))
+
+    submit(formData)
+  }
+
+  React.useEffect(() => {
+    dispatch(listAllCategories())
+  }, [dispatch])
+
+  const removeImage = (remove) => {
+    const data = preview.filter((item) => item !== remove)
+    setPreview(data)
+  }
+
+  const previewImg = (props) => {
+    const image = props.target.files[0]
+    const data = preview.length ? preview.concat(image) : [image]
+    setPreview(data)
+  }
+
+  return (
+    <SBox>
+      <form noValidate autoComplete="off">
+        <Grid container direction="row">
+          {preview.map((item) => {
+            return (
+              <SPreview>
+                <Image src={formatObjectURL(item)} />
+                <Button onClick={() => removeImage(item)} component="label">
+                  Remover
+                </Button>
+              </SPreview>
+            )
+          })}
+        </Grid>
+
+        <Grid container direction="column">
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            component="label"
+          >
+            Upload Foto
+            <input
+              accept="image/*"
+              type="file"
+              name="image"
+              hidden
+              onChange={previewImg}
+              disabled={loading}
+            />
+          </Button>
+        </Grid>
+
+        <TextField
+          autoFocus
+          fullWidth
+          size="small"
+          error={!!formValidate.title}
+          margin="normal"
+          id="standard-error-helper-text"
+          label="Nome"
+          name="title"
+          value={form.title || ''}
+          onChange={handleChange}
+          helperText={formValidate.title || ''}
+          disabled={loading}
+        />
+
+        <TextField
+          fullWidth
+          multiline
+          size="small"
+          error={!!formValidate.description}
+          margin="normal"
+          name="description"
+          label="Descrição"
+          type="text"
+          id="standard-error-helper-text"
+          value={form.description || ''}
+          onChange={handleChange}
+          helperText={formValidate.description || ''}
+          disabled={loading}
+        />
+
+        <TextField
+          fullWidth
+          size="small"
+          error={!!formValidate.price}
+          margin="normal"
+          name="price"
+          label="Preço"
+          type="text"
+          id="standard-error-helper-text"
+          inputProps={{ maxLength: 9 }}
+          value={form.price || ''}
+          onChange={handleChange}
+          onKeyUp={(e) => setForm({ ...form, price: getMoney(e) })}
+          helperText={formValidate.price || ''}
+          disabled={loading}
+        />
+
+        <TextField
+          fullWidth
+          size="small"
+          error={!!formValidate.promotion}
+          margin="normal"
+          id="standard-error-helper-text"
+          label="Promoção"
+          name="promotion"
+          value={form.promotion || ''}
+          onChange={handleChange}
+          onKeyUp={(e) => setForm({ ...form, promotion: getMoney(e) })}
+          helperText={formValidate.promotion || ''}
+          disabled={loading}
+          inputProps={{ maxLength: 9 }}
+        />
+
+        <SFormControl error={form.category === 0}>
+          <InputLabel>Categoria</InputLabel>
+          <Select
+            name="category"
+            label="Categoria"
+            inputProps={{
+              name: 'category',
+              id: 'outlined-native-simple'
+            }}
+            value={form.category || '0'}
+            onChange={handleChange}
+            disabled={loading}
+          >
+            <MenuItem value="0">selecione</MenuItem>
+            {categories?.map(({ id, name }, i) => (
+              <MenuItem key={i} value={id}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+          <FormHelperText error>{formValidate.category || ''}</FormHelperText>
+        </SFormControl>
+
+        <SFormControl>
+          <TextField
+            error={!!formValidate.quantity}
+            id="standard-error-helper-text"
+            label="Quantidade"
+            name="quantity"
+            value={form.quantity || ''}
+            onChange={handleChange}
+            helperText={formValidate.quantity || ''}
+            disabled={loading}
+            type="number"
+            inputProps={{ min: 0, max: 999 }}
+          />
+        </SFormControl>
+
+        <SFormControl>
+          <TextField
+            error={!!formValidate.height}
+            id="standard-error-helper-text"
+            label="Altura(cm)"
+            name="height"
+            value={form.height || ''}
+            onChange={handleChange}
+            helperText={formValidate.height || ''}
+            disabled={loading}
+            type="number"
+            inputProps={{ min: 0, max: 999 }}
+          />
+        </SFormControl>
+
+        <SFormControl>
+          <TextField
+            error={!!formValidate.width}
+            id="standard-error-helper-text"
+            label="Largura(cm)"
+            name="width"
+            value={form.width || ''}
+            onChange={handleChange}
+            helperText={formValidate.width || ''}
+            disabled={loading}
+            type="number"
+            inputProps={{ min: 0, max: 999 }}
+          />
+        </SFormControl>
+
+        <SFormControl>
+          <TextField
+            error={!!formValidate.depth}
+            id="standard-error-helper-text"
+            label="Profundidade(cm)"
+            name="depth"
+            value={form.depth || ''}
+            onChange={handleChange}
+            helperText={formValidate.depth || ''}
+            disabled={loading}
+            type="number"
+            inputProps={{ min: 0, max: 999 }}
+          />
+        </SFormControl>
+
+        <SFormControl>
+          <TextField
+            error={!!formValidate.weight}
+            id="standard-error-helper-text"
+            label="Peso(g)"
+            name="weight"
+            value={form.weight || ''}
+            onChange={handleChange}
+            helperText={formValidate.weight || ''}
+            disabled={loading}
+            type="number"
+            inputProps={{ min: 0, max: 999 }}
+          />
+        </SFormControl>
+
+        <SFormControl>
+          <InputLabel>Frete grátis</InputLabel>
+          <Select
+            id="freeShipping"
+            name="freeShipping"
+            value={form.freeShipping || ''}
+            label="Frete grátis"
+            onChange={handleChange}
+          >
+            <MenuItem value="0">Não</MenuItem>
+            <MenuItem value="1">Sim</MenuItem>
+          </Select>
+          <FormHelperText error>
+            {formValidate.freeShipping || ''}
+          </FormHelperText>
+        </SFormControl>
+
+        <TextField
+          fullWidth
+          className="form-control"
+          size="small"
+          error={!!formValidate.sku}
+          margin="normal"
+          id="standard-error-helper-text"
+          label="SKU"
+          name="sku"
+          value={form.sku || ''}
+          onChange={handleChange}
+          helperText={formValidate.sku || ''}
+          disabled={loading}
+        />
+
+        <SButton
+          fullWidth
+          type="button"
+          disabled={isNotValid(form, formValidate)}
+          onClick={submitForm}
+        >
+          Atualizar
+        </SButton>
+      </form>
+    </SBox>
+  )
+}
+
+export default FormProductUpdate
