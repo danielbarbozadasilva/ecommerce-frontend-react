@@ -3,7 +3,8 @@ import TYPES from '../types'
 const INITIAL_STATE = {
   loading: false,
   all: [],
-  productById: []
+  productById: [],
+  sort: ''
 }
 
 const reducer = ({ ...state } = INITIAL_STATE, action) => {
@@ -15,9 +16,13 @@ const reducer = ({ ...state } = INITIAL_STATE, action) => {
 
     case TYPES.PRODUCT_ALL:
       state.all = action.data
+      state.sort = action.sort
       state.loading = false
       return state
-
+    case TYPES.PRODUCT_WITH_FILTER:
+      state.all = action.data
+      state.loading = false
+      return state
     case TYPES.PRODUCT_BY_ID:
       state.productById = action.data
       state.loading = false

@@ -3,7 +3,7 @@ import { IconButton, Tooltip } from '@material-ui/core'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { More as MoreIcon } from '@mui/icons-material'
 import Loading from '../../../loading/page/index'
-import { BoxTable } from '../../datagrid/styled'
+import { BoxTable } from '../../datalist/styled'
 import ListProduct from './details/index'
 import ListClient from './client/index'
 import ListDelivery from './delivery/index'
@@ -167,7 +167,7 @@ const DataList = ({ data, loading }) => {
         data={data.length ? data[0].client : ''}
         close={() => setModalClient({ ...modelClient, open: false })}
       />
-       <ListDelivery
+      <ListDelivery
         open={modelDelivery.open || false}
         data={data.length ? data[0].deliveries : ''}
         close={() => setModalDelivery({ ...modelDelivery, open: false })}

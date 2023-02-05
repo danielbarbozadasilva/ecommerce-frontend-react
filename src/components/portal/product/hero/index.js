@@ -105,6 +105,7 @@ const Hero = (props) => {
             <DisplayQuantity>
               <label>Quantidade:</label>
               <SInputQuantity
+                autoFocus
                 type="number"
                 name="quantity"
                 value={quantity}

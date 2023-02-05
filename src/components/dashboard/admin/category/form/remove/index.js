@@ -16,10 +16,10 @@ const Remove = ({ open, remove, close }) => {
         aria-describedby="alert-dialog-description"
         disableEnforceFocus
       >
-        <DialogTitle id="alert-dialog-title">Excluir Produto</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Excluir Categoria</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Tem certeza de que deseja excluir o produto selecionado?
+            Tem certeza de que deseja excluir a categoria selecionada e seus respectivos produtos?
             <br /> Esta ação não poderá ser desfeita!
           </DialogContentText>
         </DialogContent>

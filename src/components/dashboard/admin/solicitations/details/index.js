@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-import DataList from '~/components/datagrid'
+import DataList from '~/components/dashboard/datagrid'
 
 const ListProduct = ({ data, open, close }) => {
   const columns = [
@@ -41,15 +41,15 @@ const ListProduct = ({ data, open, close }) => {
     <Dialog
       open={open}
       onClose={close}
-      aria-labelledby='alert-dialog-title'
-      aria-describedby='alert-dialog-description'
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id='alert-dialog-title'>Lista de produtos</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Lista de produtos</DialogTitle>
       <DialogContent style={{ width: '600px' }}>
         <DataList data={data} columns={columns} loading={false} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={close} color='primary' autoFocus>
+        <Button onClick={close} color="primary" autoFocus>
           fechar
         </Button>
       </DialogActions>

@@ -10,11 +10,12 @@ import {
   ContainerCategories,
   STextPromotion,
   STextFormated,
+  SContainerFilter,
   settings
 } from './styled.js'
 import {
   listAllProducts,
-  searchProducts
+  searchProductPortal
 } from '../../../store/product/product.action'
 import { listAllCategories } from '../../../store/category/category.action'
 import CarouselUncontrolled from '../../../components/carousel/index'
@@ -22,6 +23,7 @@ import Slider from 'react-slick'
 import Helmet from 'react-helmet'
 import PaginationSelector from '../../../components/paginate/selector/index'
 import PaginationComponent from '../../../components/paginate/index'
+import FilterProduct from '~/components/portal/filter'
 
 function Home(props) {
   const dispatch = useDispatch()
@@ -38,7 +40,7 @@ function Home(props) {
 
   useEffect(() => {
     if (props.search) {
-      dispatch(searchProducts(props.search, itensPerPage, currentPage))
+      dispatch(searchProductPortal(props.search, itensPerPage, currentPage))
     }
   }, [dispatch])
 
@@ -83,6 +85,11 @@ function Home(props) {
       <STextPromotion>
         <h2>Ofertas de Hoje!</h2>
       </STextPromotion>
+
+      <SContainerFilter>
+        <FilterProduct />
+      </SContainerFilter>
+      
       <ContainerCards>
         {!loading && product?.data?.length === 0 ? (
           <STextFormated>

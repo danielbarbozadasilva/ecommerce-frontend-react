@@ -10,22 +10,21 @@ import {
 } from '../../services/product.service'
 import { toastr } from 'react-redux-toastr'
 
-export const listAllProducts = (itensPerPage, currentPage) => {
+export const listAllProducts = (itensPerPage, currentPage, sortType) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
-      const result = await listAllProductsService(itensPerPage, currentPage)
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
+      const result = await listAllProductsService(itensPerPage, currentPage, sortType)
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0], sort: sortType })
     } catch (error) {}
   }
 }
 
 export const listProducts = (sortType) => {
   return async (dispatch) => {
-    dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
     try {
       const result = await listProductsService(sortType)
-      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data })
+      dispatch({ type: TYPES.PRODUCT_WITH_FILTER, data: result.data.data })
     } catch (error) {}
   }
 }
@@ -75,6 +74,20 @@ export const editProduct = (id) => {
     try {
       const result = await listByIdProductService(id)
       dispatch({ type: TYPES.PRODUCT_EDIT, data: result.data.data })
+    } catch (error) {}
+  }
+}
+
+export const searchProductPortal = (search, itemsPerPage = 100, currentPage = 0) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.PRODUCT_LOADING, status: true })
+    try {
+      const result = await searchProductsService(
+        search,
+        itemsPerPage,
+        currentPage
+      )
+      dispatch({ type: TYPES.PRODUCT_ALL, data: result.data.data[0] })
     } catch (error) {}
   }
 }

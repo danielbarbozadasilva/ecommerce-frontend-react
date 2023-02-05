@@ -30,14 +30,15 @@ const FormCheckout = ({ data, submit }) => {
 
   const handleChange = (props) => {
     const { value, name } = props.target
-    getBrand()
-    getCardToken()
+
     const message = fieldValidate(name, value, brand, cardToken)
     setFormValidate({ ...formValidate, [name]: message })
     setForm({
       ...form,
       [name]: value
     })
+    getBrand()
+    getCardToken()
   }
 
   useEffect(() => {
@@ -594,7 +595,7 @@ const FormCheckout = ({ data, submit }) => {
           onClick={submitForm}
           disabled={isNotValid(form, formValidate, paymentMethod)}
         >
-          Cadastrar
+          Finalizar
         </SButton>
       )}
     </SForm>

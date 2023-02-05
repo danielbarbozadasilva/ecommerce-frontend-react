@@ -9,8 +9,9 @@ export const SContainer = styled.div`
 export const SFormSelect = styled(Select)`
   width: 80px;
   height: 40px;
+  text-align: center;
 `
 
 export const TextSelect = styled.h6`
-  margin: 10px 20px;
+  margin: 8px 20px;
 `

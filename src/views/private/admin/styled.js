@@ -11,7 +11,8 @@ export const SearchContainer = styled.div`
 
 export const SButton = styled(Button)`
   margin-top: 5%;
-  background-color: #4e6062;
+  background-color: #4F5D73;
+  border: none;
   &:hover {
     background-color: #ccc;
     transition: 0.5s ease-out;

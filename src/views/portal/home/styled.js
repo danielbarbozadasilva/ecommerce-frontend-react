@@ -53,6 +53,10 @@ export const ContainerCards = styled.div`
   margin-bottom: 100px;
 `
 
+export const SContainerFilter = styled.div`
+  margin-left: 5%;
+`
+
 export const STextPromotion = styled.div`
   margin-top: 140px;
   margin-bottom: 30px;

@@ -16,8 +16,9 @@ import FormProductUpdate from '../../../../components/dashboard/admin/product/fo
 import Remove from '../../../../components/dashboard/admin/product/form/remove/index'
 import Search from '~/components/dashboard/admin/product/search'
 import { StyleContainer, SearchContainer, SButton } from '../styled'
+import { Helmet } from 'react-helmet'
 
-const Product = () => {
+const Product = (props) => {
   const dispatch = useDispatch()
   const [modal, setModal] = React.useState({})
   const products = useSelector((state) => state.product.all)
@@ -69,17 +70,14 @@ const Product = () => {
         <Search />
       </SearchContainer>
       <div>
-        <SButton
-          onClick={() => toogleModal(1, null)}
-        >
-          Novo
-        </SButton>
+        <SButton onClick={() => toogleModal(1, null)}>Novo</SButton>
       </div>
     </StyleContainer>
   )
 
   return (
     <>
+      <Helmet title={props.title} />
       <Title title="Produtos" subTitle="Página de Produtos" actions={actions} />
       <Grid container spacing={2}>
         <Grid item md={12} xl={12}>

@@ -5,13 +5,14 @@ import { Col, Form } from 'react-bootstrap'
 import InputMask from 'react-input-mask'
 import { Select } from '@material-ui/core'
 import ufCityFile from '../../../../util/state-city.json'
-import { SForm, SRow, SFormGroup, STextForm, SButton } from '../styled'
+import { SFormSignUp, SRow, SFormGroup, STextForm, SButton } from '../styled'
 import Loading from '../../../loading/form/index'
 import {
   fieldValidate,
   isNotValid,
   formatPhone
 } from '../../../../util/validations/form-signup'
+import { searchZipCode } from '~/store/auth/auth.action'
 
 const SignUp = ({ submit }) => {
   const registered = useSelector((state) => state.auth.registered)
@@ -31,22 +32,16 @@ const SignUp = ({ submit }) => {
     })
   }
 
-  const checkCEP = (e) => {
+  const checkCEP = async (e) => {
     const cep = e.target.value.replace(/\D/g, '')
-    fetch(`https://viacep.com.br/ws/${cep}/json`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          setForm({
-            ...form,
-            street: data.logradouro,
-            city: data.localidade?.toUpperCase(),
-            district: data.bairro,
-            uf: data.uf
-          })
-        }
-      })
-      .catch(() => {})
+    const result = await searchZipCode(cep)
+    setForm({
+      ...form,
+      street: result.logradouro,
+      city: result.localidade?.toUpperCase(),
+      district: result.bairro,
+      uf: result.uf
+    })
   }
 
   useEffect(() => {
@@ -89,7 +84,7 @@ const SignUp = ({ submit }) => {
   }
 
   return (
-    <SForm autoComplete="off">
+    <SFormSignUp autoComplete="off">
       <STextForm>Cadastre-se</STextForm>
       <SRow>
         <SFormGroup as={Col}>
@@ -385,7 +380,7 @@ const SignUp = ({ submit }) => {
           Cadastrar
         </SButton>
       )}
-    </SForm>
+    </SFormSignUp>
   )
 }
 
