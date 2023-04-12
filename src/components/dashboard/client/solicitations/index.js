@@ -13,13 +13,16 @@ const DataList = ({ data, loading }) => {
   const [modelClient, setModalClient] = React.useState({})
   const [modelDelivery, setModalDelivery] = React.useState({})
 
-  const actionModalProduct = ({ row }) => {
+  const actionModalProduct = ({ id, row }) => {
+    const solicitation = Array(row).find((data) => id === data.id)
     return (
       <>
         <Tooltip title="Consultar">
           <span>
             <IconButton
-              onClick={() => setModalProduct({ open: true, data: row })}
+              onClick={() =>
+                setModalProduct({ open: true, data: solicitation.cart })
+              }
               color="primary"
             >
               <MoreIcon />
@@ -30,13 +33,14 @@ const DataList = ({ data, loading }) => {
     )
   }
 
-  const actionModalClient = ({ row }) => {
+  const actionModalClient = ({ id, row }) => {
+    const data = Array(row).find((data) => id === data.id)
     return (
       <>
         <Tooltip title="Consultar">
           <span>
             <IconButton
-              onClick={() => setModalClient({ open: true, data: row })}
+              onClick={() => setModalClient({ open: true, data: data.client })}
               color="primary"
             >
               <MoreIcon />
@@ -47,13 +51,16 @@ const DataList = ({ data, loading }) => {
     )
   }
 
-  const actionModalDelivery = ({ row }) => {
+  const actionModalDelivery = ({ id, row }) => {
+    const data = Array(row).find((data) => id === data.id)
     return (
       <>
         <Tooltip title="Consultar">
           <span>
             <IconButton
-              onClick={() => setModalDelivery({ open: true, data: row })}
+              onClick={() =>
+                setModalDelivery({ open: true, data: data.deliveries })
+              }
               color="primary"
             >
               <MoreIcon />
@@ -159,17 +166,17 @@ const DataList = ({ data, loading }) => {
       </BoxTable>
       <ListProduct
         open={modelProduct.open || false}
-        data={data.length ? data[0].cart : ''}
+        data={modelProduct.data}
         close={() => setModalProduct({ ...modelProduct, open: false })}
       />
       <ListClient
         open={modelClient.open || false}
-        data={data.length ? data[0].client : ''}
+        data={modelClient.data}
         close={() => setModalClient({ ...modelClient, open: false })}
       />
       <ListDelivery
         open={modelDelivery.open || false}
-        data={data.length ? data[0].deliveries : ''}
+        data={modelDelivery.data}
         close={() => setModalDelivery({ ...modelDelivery, open: false })}
       />
     </>

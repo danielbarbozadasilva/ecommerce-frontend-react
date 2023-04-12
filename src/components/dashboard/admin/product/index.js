@@ -159,7 +159,7 @@ const DataList = ({ data, modal, loading }) => {
         className={classes.root}
         getCellClassName={(params) => {
           if (params.field === 'quantity') {
-            return params.value < 5 ? 'hot' : ''
+            return params.value <= 5 ? 'hot' : ''
           }
           return ''
         }}
