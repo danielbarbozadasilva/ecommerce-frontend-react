@@ -20,7 +20,7 @@ const FormCheckout = ({ data, submit }) => {
   const loading = useSelector((state) => state.auth.loading)
   const [uf, setUf] = useState([])
   const [city, setCity] = useState([])
-  const [paymentMethod, setPaymentMethod] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState('BOLETO')
   const [brand, setBrand] = useState('')
   const [cardToken, setCardToken] = useState(undefined)
   const [installments, setInstallments] = useState('')
@@ -135,6 +135,7 @@ const FormCheckout = ({ data, submit }) => {
               name="paymentType"
               value={form?.paymentType || paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)}
+              defaultValue="BOLETO"
             >
               <FormControlLabel
                 value="BOLETO"
